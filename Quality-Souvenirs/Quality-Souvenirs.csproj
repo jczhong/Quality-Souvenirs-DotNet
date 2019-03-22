@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RootNamespace>QualitySouvenirs</RootNamespace>
+    <AssemblyName>QualitySouvenirs</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
