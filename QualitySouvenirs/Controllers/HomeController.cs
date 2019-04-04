@@ -4,12 +4,20 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using QualitySouvenirs.Data;
 using QualitySouvenirs.Models;
 
 namespace QualitySouvenirs.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ApplicationContext _context;
+
+        public HomeController(ApplicationContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
             return View();
