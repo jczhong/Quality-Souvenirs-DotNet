@@ -36,53 +36,15 @@
 </div>
 
 <div class="card-columns">
+    @foreach (var item in Categories)
+    {
     <div class="card text-center">
-        <a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@Categories[0].ID" >
-            <img class="card-img-top img-responsive" src="~/images/Categories/hat.svg" alt="Maori Gifts" />
+        <a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@item.ID" >
+            <img class="card-img-top img-responsive" src="@item.PathOfImage" alt="@item.Name" />
         </a>
         <div class="card-body">
-            <h5 class="card-text">@Categories[0].Name</h5>
+            <h5 class="card-text">@item.Name</h5>
         </div>
     </div>
-
-    <div class="card text-center">
-        <a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@Categories[1].ID" >
-            <img class="card-img-top img-responsive" src="~/images/Categories/hat.svg" alt="Jewellery" />
-        </a>
-            <div class="card-body">
-                <h5 class="card-text">@Categories[1].Name</h5>
-            </div>
-    </div>
-    <div class="card text-center">
-        <aasp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@Categories[2].ID" >
-            <img class="card-img-top img-responsive" src="~/images/Categories/hat.svg" alt="Art" />
-        </aasp-area="">
-        <div class="card-body">
-            <h5 class="card-text">@Categories[2].Name</h5>
-        </div>
-    </div>
-    <div class="card text-center">
-        <a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@Categories[3].ID" >
-            <img class="card-img-top img-responsive" src="~/images/Categories/hat.svg" alt="Homeware" />
-        </a>
-            <div class="card-body">
-                <h5 class="card-text">@Categories[3].Name</h5>
-            </div>
-    </div>
-    <div class="card text-center">
-        <a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@Categories[4].ID" >
-            <img class="card-img-top img-responsive" src="~/images/Categories/hat.svg" alt="Clothing" />
-        </a>
-            <div class="card-body">
-                <h5 class="card-text">@Categories[4].Name</h5>
-            </div>
-    </div>
-    <div class="card text-center">
-        <a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@Categories[5].ID" >
-            <img class="card-img-top img-responsive" src="~/images/Categories/hat.svg" alt="Bags" />
-        </a>
-        <div class="card-body">
-            <h5 class="card-text">@Categories[5].Name</h5>
-        </div>
-    </div>
+    }
 </div>

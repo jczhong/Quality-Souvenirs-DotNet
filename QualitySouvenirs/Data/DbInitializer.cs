@@ -17,12 +17,12 @@ namespace QualitySouvenirs.Data
 
             var categories = new Category[]
             {
-                new Category{ Name="Maori Gifts"},
-                new Category{ Name="Jewellery"},
-                new Category{ Name="Art" },
-                new Category{ Name="Homeware" },
-                new Category{ Name="Clothing" },
-                new Category{ Name="Bags" },
+                new Category{ Name="Maori Gifts", PathOfImage="/images/Categories/hat.svg" },
+                new Category{ Name="Jewellery", PathOfImage="/images/Categories/hat.svg" },
+                new Category{ Name="Art", PathOfImage="/images/Categories/hat.svg" },
+                new Category{ Name="Homeware", PathOfImage="/images/Categories/hat.svg" },
+                new Category{ Name="Clothing", PathOfImage="/images/Categories/hat.svg" },
+                new Category{ Name="Bags", PathOfImage="/images/Categories/hat.svg" },
             };
             foreach(Category category in categories)
             {
