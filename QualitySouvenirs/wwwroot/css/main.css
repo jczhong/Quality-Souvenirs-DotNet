@@ -1,15 +1,11 @@
 ﻿.CarouselArea {
     margin-top: 1em;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
 }
 
 .item img {
     height: 450px !important;
     width: 850px !important;
-}
-
-.CategoryImag {
-    width: 10em;
 }
 
 @media (min-width: 576px) {
