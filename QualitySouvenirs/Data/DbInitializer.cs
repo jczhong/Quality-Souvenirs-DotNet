@@ -24,6 +24,7 @@ namespace QualitySouvenirs.Data
             {
                 context.Categories.Add(category);
             }
+            context.SaveChanges();
 
             var souvenirs = new Souvenir[]
             {
@@ -34,6 +35,7 @@ namespace QualitySouvenirs.Data
             {
                 context.Souvenirs.Add(souvenir);
             }
+            context.SaveChanges();
         }
     }
 }
