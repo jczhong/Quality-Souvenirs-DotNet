@@ -27,7 +27,8 @@ namespace QualitySouvenirs.Data
 
             var souvenirs = new Souvenir[]
             {
-                new Souvenir{ Name="Test hat", Description="This is a test product", Price=12.8, PathOfImage=""}
+                new Souvenir{ Name="Test hat", Description="This is a test product", Price=12.8, PathOfImage=""},
+                new Souvenir{ Name="Test toy", Description="This is a test product", Price=3.8, PathOfImage=""}
             };
             foreach(Souvenir souvenir in souvenirs)
             {
