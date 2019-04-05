@@ -17,8 +17,12 @@ namespace QualitySouvenirs.Data
 
             var categories = new Category[]
             {
-                new Category{ Name="Hats" },
-                new Category{ Name="Toys" },
+                new Category{ Name="Kiwiana"},
+                new Category{ Name="Jewellery"},
+                new Category{ Name="Art" },
+                new Category{ Name="Homeware" },
+                new Category{ Name="Clothing" },
+                new Category{ Name="Bags" },
             };
             foreach(Category category in categories)
             {

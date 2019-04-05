@@ -20,6 +20,7 @@ namespace QualitySouvenirs.Controllers
 
         public IActionResult Index()
         {
+            ViewData["Categories"] = _context.Categories.ToList();
             return View();
         }
 
