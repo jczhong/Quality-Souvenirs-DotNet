@@ -17,7 +17,7 @@ namespace QualitySouvenirs.Data
 
             var categories = new Category[]
             {
-                new Category{ Name="Kiwiana"},
+                new Category{ Name="Maori Gifts"},
                 new Category{ Name="Jewellery"},
                 new Category{ Name="Art" },
                 new Category{ Name="Homeware" },
