@@ -3,5 +3,40 @@
     ViewData["Title"] = "Product";
 }
 
-<h2>Index</h2>
+<div class="ProductCategoryRow">
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="CategoryDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Categories
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="CategoryDropdownMenu">
+            <li><a href="#">Maori Gifts</a></li>
+            <li><a href="#">Jewellery</a></li>
+        </ul>
+    </div>
+    <div class="ProductFilterRow">
+        <div class="ProductIndex">
+            Showing 1 - 3 of 3 products
+        </div>
+        <select class="FilterSelecter">
+            <option value="popularity">Popularity High to Low</option>
+            <option value="popularity">Popularity Low to High</option>
+            <option value="price">Price Low to High</option>
+            <option value="price">Price High to Low</option>
+        </select>
+    </div>
+</div>
 
+<div class="row">
+    @for (var i = 0; i < 6; i++)
+    {
+        <div class="col-lg-3 ProductItem">
+            <div class="ProductImag">
+                <a><img src="http://placehold.it/250x300" /></a>
+            </div>
+            <div class="ProductName text-center">Name</div>
+            <div class="ProductPrice text-center">$2.5 ea</div>
+            <div class="text-center"><button type="button" class="btn btn-default">Add to Cart</button></div>
+        </div>
+    }
+</div>
