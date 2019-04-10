@@ -1,8 +1,36 @@
 ﻿@{
-    ViewData["Title"] = "Contact";
+    ViewData["Title"] = "Contact Us";
 }
 <h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
+
+
+<style>
+    #map {
+        height: 400px;
+        width: auto;
+    }
+</style>
+<div class="row">
+    <div id="map"></div>
+    <script>
+        var map;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -36.87967209686738, lng: 174.7068214416504 },
+                zoom: 15
+            });
+            // Add marker
+            var marker = new google.maps.Marker({
+                position: { lat: -36.87967209686738, lng: 174.7068214416504  },
+                map: map
+            });
+        }
+
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFyDYFSffqTsmYyt1Gor99wcjdSCHMQgI&callback=initMap">
+    </script>
+</div>
 
 <address>
     One Microsoft Way<br />
