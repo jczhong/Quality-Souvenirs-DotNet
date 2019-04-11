@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<QualitySouvenirs.Models.Souvenir>
+
 @{
     ViewData["Title"] = "Product";
     List<Category> Categories = (List<Category>)ViewData["Categories"];
@@ -39,14 +40,14 @@
     </div>
 </div>
 <div class="ProductItemRow">
-    @for (var i = 0; i < 6; i++)
+    @foreach (var item in Model)
     {
         <div class="ProductItem">
             <div class="ProductImag text-center">
                 <a><img src="http://placehold.it/150x200" /></a>
             </div>
-            <div class="ProductName text-center">Name</div>
-            <div class="ProductPrice text-center">$2.5 ea</div>
+            <div class="ProductName text-center">@Html.DisplayFor(modelItem => item.Name)</div>
+            <div class="ProductPrice text-center">$@Html.DisplayFor(modelItem => item.Price)</div>
             <div class="ProductOrder text-center"><button type="button" class="btn btn-default">Add to Cart</button></div>
         </div>
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using QualitySouvenirs.Data;
 using QualitySouvenirs.Models;
 
@@ -19,11 +20,21 @@ namespace QualitySouvenirs.Controllers
             categories = _context.Categories.ToList();
         }
 
-        public IActionResult Index(int? id)
+        public async Task<IActionResult> Index(int? id)
         {
-
             ViewData["Categories"] = categories;
-            return View();
+
+            if (id == null)
+            {
+                return View(await _context.Souvenirs.ToListAsync());
+            }
+            else
+            {
+                var souvenirs = await _context.Souvenirs
+                            .Where(s => s.ID == id)
+                            .ToListAsync();
+                return View(souvenirs);
+            }
         }
     }
 }
