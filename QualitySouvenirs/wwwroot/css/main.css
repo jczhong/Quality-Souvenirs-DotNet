@@ -32,47 +32,59 @@
     }
 }
 
-.ProductCategoryRow {
+.ProductOpsRow {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
-    margin-top: 1em;
-    margin-bottom: 1em;
+    margin: 1em;
 }
 
-.ProductFilterRow {
+.ProductOpsRow > .ProductOpsSubRow {
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
 }
 
-.ProductFilterRow .FilterSelecter {
+.ProductOpsCol {
+    margin-left: 1em;
+}
+
+.FilterSelecter {
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
-.ProductFilterRow .ProductIndex {
-    margin-right: 1em;
+.ProductItemRow {
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.ProductItem {
-    padding-bottom: 2em;
+.ProductItemRow > .ProductItem {
+    margin: 1em;
+    border: 1px solid;
+    flex-shrink: 0;
+    flex-basis: 200px;
 }
 
-.ProductItem .ProductImag {
+.ProductItem > .ProductImag {
 
 }
 
-.ProductItem .ProductName {
+.ProductItem > .ProductName {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.ProductItem > .ProductPrice {
     padding-top: 5px;
     padding-bottom: 5px;
     font-size: 1.5em;
     font-weight: bold;
 }
 
-.ProductItem .ProductPrice {
+.ProductItem > .ProductOrder {
     padding-top: 5px;
-    padding-bottom: 8px;
-    font-size: 1em;
+    padding-bottom: 5px;
 }
+

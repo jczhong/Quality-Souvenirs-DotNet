@@ -1,24 +1,36 @@
 ﻿
 @{
     ViewData["Title"] = "Product";
+    List<Category> Categories = (List<Category>)ViewData["Categories"];
 }
 
-<div class="ProductCategoryRow">
-    <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" id="CategoryDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Categories
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="CategoryDropdownMenu">
-            <li><a href="#">Maori Gifts</a></li>
-            <li><a href="#">Jewellery</a></li>
-        </ul>
+<div class="ProductOpsRow">
+    <div class="ProductOpsSubRow">
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="CategoryDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Categories
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="CategoryDropdownMenu">
+                @foreach (var item in Categories)
+                {
+                    <li><a href="#">@item.Name</a></li>
+                }
+            </ul>
+        </div>
+        <div class="ProductOpsCol">
+            <form class="form-inline mx-auto">
+                <input class="form-control" type="search" placeholder="Search for product" />
+                <button class="btn btn-outline-secondary" type="submit">Go</button>
+            </form>
+        </div>
     </div>
-    <div class="ProductFilterRow">
-        <div class="ProductIndex">
+
+    <div class="ProductOpsSubRow">
+        <div class="ProductOpsCol">
             Showing 1 - 3 of 3 products
         </div>
-        <select class="FilterSelecter">
+        <select class="ProductOpsCol FilterSelecter">
             <option value="popularity">Popularity High to Low</option>
             <option value="popularity">Popularity Low to High</option>
             <option value="price">Price Low to High</option>
@@ -26,17 +38,16 @@
         </select>
     </div>
 </div>
-
-<div class="row">
+<div class="ProductItemRow">
     @for (var i = 0; i < 6; i++)
     {
-        <div class="col-lg-3 ProductItem">
-            <div class="ProductImag">
-                <a><img src="http://placehold.it/250x300" /></a>
+        <div class="ProductItem">
+            <div class="ProductImag text-center">
+                <a><img src="http://placehold.it/150x200" /></a>
             </div>
             <div class="ProductName text-center">Name</div>
             <div class="ProductPrice text-center">$2.5 ea</div>
-            <div class="text-center"><button type="button" class="btn btn-default">Add to Cart</button></div>
+            <div class="ProductOrder text-center"><button type="button" class="btn btn-default">Add to Cart</button></div>
         </div>
     }
 </div>
