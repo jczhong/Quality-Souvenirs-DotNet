@@ -15,7 +15,7 @@
             <ul class="dropdown-menu" aria-labelledby="CategoryDropdownMenu">
                 @foreach (var item in Categories)
                 {
-                    <li><a href="#">@item.Name</a></li>
+                    <li><a asp-controller="Product" asp-action="Index" asp-route-id="@item.ID">@item.Name</a></li>
                 }
             </ul>
         </div>
