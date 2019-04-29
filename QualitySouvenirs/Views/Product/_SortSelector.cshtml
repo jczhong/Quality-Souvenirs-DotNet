@@ -1,4 +1,4 @@
 ﻿@model QualitySouvenirs.Models.SortViewModel
 
-<select id="SortSelector" class="ProductOpsCol FilterSelecter" asp-for="SortType" asp-items="Model.SortTypes"></select>
+<select id="SortSelector" class="ProductOpsCol FilterSelecter" asp-for="SortType" asp-items="Model.SortTypes" search="@ViewData["SearchString"]"></select>
 

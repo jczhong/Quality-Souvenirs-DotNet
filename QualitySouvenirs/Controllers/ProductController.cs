@@ -9,13 +9,6 @@ using QualitySouvenirs.Models;
 
 namespace QualitySouvenirs.Controllers
 {
-    enum SortType {
-        PopularityH = 0,
-        PopularityL = 1,
-        PriceL = 2,
-        PriceH = 3
-    }
-
     public class ProductController : Controller
     {
         private readonly ApplicationContext _context;
@@ -27,7 +20,7 @@ namespace QualitySouvenirs.Controllers
             categories = _context.Categories.ToList();
         }
 
-        public IActionResult Index(int? id, bool? byId, string sort)
+        public IActionResult Index(int? id, bool? byId, string sort, string search)
         {
             int currentID;
             string currentSort;
@@ -69,6 +62,13 @@ namespace QualitySouvenirs.Controllers
                 souvenirs = souvenirs.Where<Souvenir>(s => s.ID == currentID);
             }
 
+            if (search != null)
+            {
+                ViewData["SearchString"] = search;
+                souvenirs = souvenirs.Where(s => s.Name.Contains(search));
+            }
+
+            ViewData["FilterById"] = currentById ? "true" : "false";
             if (currentById)
             {
                 ViewData["FilterID"] = currentID;

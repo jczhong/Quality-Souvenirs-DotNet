@@ -9,7 +9,21 @@ $(document).ready(function () {
         if (value != null) {
             url = url.replace(value[1], this.value);
         } else {
-            url = url + "?sort=" + this.value;
+            if (location.search != "") {
+                url = url + "&sort=" + this.value;
+            } else {
+                url = url + "?sort=" + this.value;
+            }
+        }
+        if ($(this).attr("search") != null) {
+            if (url.match(/search=/) == null) {
+                var search = $(this).attr("search");
+                if (location.search != "") {
+                    url = url + "&search=" + search;
+                } else {
+                    url = url + "?search=" + search;
+                }
+            }
         }
         location.href = url;
     });

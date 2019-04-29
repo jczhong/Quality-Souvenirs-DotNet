@@ -16,13 +16,20 @@
             <ul class="dropdown-menu" aria-labelledby="CategoryDropdownMenu">
                 @foreach (var item in Categories)
                 {
-                    <li><a asp-controller="Product" asp-action="Index" asp-route-id="@item.ID" asp-route-byId="true" asp-route-sort="@ViewData["SortType"]">@item.Name</a></li>
+                    <li><a asp-controller="Product" asp-action="Index" 
+                            asp-route-id="@item.ID" asp-route-byId="true" 
+                            asp-route-sort="@ViewData["SortType"]" asp-route-search="@ViewData["SearchString"]">@item.Name</a></li>
                 }
             </ul>
         </div>
         <div class="ProductOpsCol">
-            <form class="form-inline mx-auto">
-                <input class="form-control" type="search" placeholder="Search for product" />
+            <form class="form-inline mx-auto" 
+                asp-controller="Product" 
+                asp-action="Index"
+                asp-route-id="@ViewData["FilterID"]"
+                asp-route-byId="@ViewData["FilterById"]" 
+                asp-route-sort="@ViewData["SortType"]">
+                <input class="form-control" type="search" placeholder="Search for product" name="search"/>
                 <button class="btn btn-outline-secondary" type="submit">Go</button>
             </form>
         </div>
@@ -32,7 +39,7 @@
         <div class="ProductOpsCol">
             Showing 1 - 3 of 3 products
         </div>
-        @await Html.PartialAsync("_SortSelector", ViewData["SortViewModel"])
+        @await Html.PartialAsync("_SortSelector", ViewData["SortViewModel"], new ViewDataDictionary(ViewData))
     </div>
 </div>
 
@@ -41,7 +48,19 @@
     {
         <div class="ProductFilterCol">
             <span>@Categories.Find(x => x.ID == FilterID).Name</span>
-            <a class='ProductFilterDelete' asp-controller="Product" asp-action="Index" asp-route-id="" asp-route-sort="@ViewData["SortType"]">X</a>
+            <a class='ProductFilterDelete' asp-controller="Product" asp-action="Index"
+               asp-route-id="" asp-route-byId="false"
+               asp-route-sort="@ViewData["SortType"]"
+               asp-route-search="@ViewData["SearchString"]">X</a>
+        </div>
+    }
+    @if (ViewData["SearchString"] != null)
+    {
+        <div class="ProductFilterCol">
+            <span>Search: @ViewData["SearchString"]</span>
+            <a class='ProductFilterDelete' asp-controller="Product" asp-action="Index"
+               asp-route-id="@ViewData["FilterID"]" asp-route-byId="@ViewData["FilterById"]"
+               asp-route-sort="@ViewData["SortType"]">X</a>
         </div>
     }
 </div>
