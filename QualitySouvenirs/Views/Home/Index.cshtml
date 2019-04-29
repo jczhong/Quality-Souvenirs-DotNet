@@ -39,7 +39,7 @@
     @foreach (var item in Categories)
     {
     <div class="card text-center">
-        <a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@item.ID" >
+        <a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@item.ID">
             <img class="card-img-top img-responsive" src="@item.PathOfImage" alt="@item.Name" />
         </a>
         <div class="card-body">

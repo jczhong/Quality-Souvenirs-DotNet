@@ -9,6 +9,13 @@ using QualitySouvenirs.Models;
 
 namespace QualitySouvenirs.Controllers
 {
+    enum SortType {
+        PopularityH = 0,
+        PopularityL = 1,
+        PriceL = 2,
+        PriceH = 3
+    }
+
     public class ProductController : Controller
     {
         private readonly ApplicationContext _context;
@@ -20,21 +27,78 @@ namespace QualitySouvenirs.Controllers
             categories = _context.Categories.ToList();
         }
 
-        public async Task<IActionResult> Index(int? id)
+        public IActionResult Index(int? id, bool? byId, string sort)
         {
+            int currentID;
+            string currentSort;
+            bool currentById;
             ViewData["Categories"] = categories;
 
             if (id == null)
             {
-                return View(await _context.Souvenirs.ToListAsync());
+                currentID = -1;
             }
             else
             {
-                var souvenirs = await _context.Souvenirs
-                            .Where(s => s.ID == id)
-                            .ToListAsync();
-                return View(souvenirs);
+                currentID = id.Value;
             }
+
+            if (byId == null)
+            {
+                currentById = false;
+            }
+            else
+            {
+                currentById = byId.Value;
+            }
+
+            if (sort == null)
+            {
+                currentSort = "popularity";
+            }
+            else
+            {
+                currentSort = sort;
+            }
+
+            var souvenirs = from s in _context.Souvenirs
+                            select s;
+
+            if (currentID != -1)
+            {
+                souvenirs = souvenirs.Where<Souvenir>(s => s.ID == currentID);
+            }
+
+            if (currentById)
+            {
+                ViewData["FilterID"] = currentID;
+            }
+
+            ViewData["SortType"] = currentSort;
+            var sortViewModel = new SortViewModel();
+            sortViewModel.SortType = currentSort;
+            ViewData["SortViewModel"] = sortViewModel;
+
+            switch (currentSort)
+            {
+                case "popularity_desc":
+                    souvenirs = souvenirs.OrderBy(s => s.Popularity);
+                    break;
+
+                case "popularity":
+                    souvenirs = souvenirs.OrderByDescending(s => s.Popularity);
+                    break;
+
+                case "price":
+                    souvenirs = souvenirs.OrderByDescending(s => s.Price);
+                    break;
+
+                case "price_desc":
+                    souvenirs = souvenirs.OrderBy(s => s.Price);
+                    break;
+            }
+
+            return View(souvenirs);
         }
     }
 }

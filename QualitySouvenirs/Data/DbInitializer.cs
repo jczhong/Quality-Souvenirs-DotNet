@@ -32,12 +32,12 @@ namespace QualitySouvenirs.Data
 
             var souvenirs = new Souvenir[]
             {
-                new Souvenir{ Name="Test Maori Gifts", Description="This is a test product", Price=12.8, PathOfImage="", CategoryID=1},
-                new Souvenir{ Name="Test Jewellery", Description="This is a test product", Price=31.8, PathOfImage="", CategoryID=2},
-                new Souvenir{ Name="Test Art", Description="This is a test product", Price=93.8, PathOfImage="", CategoryID=3},
-                new Souvenir{ Name="Test Homeware", Description="This is a test product", Price=3.8, PathOfImage="", CategoryID=4},
-                new Souvenir{ Name="Test Clothing", Description="This is a test product", Price=13.8, PathOfImage="", CategoryID=5},
-                new Souvenir{ Name="Test Bags", Description="This is a test product", Price=33.8, PathOfImage="", CategoryID=6},
+                new Souvenir{ Name="Test Maori Gifts", Description="This is a test product", Price=12.8, Popularity=1, PathOfImage="", CategoryID=1},
+                new Souvenir{ Name="Test Jewellery", Description="This is a test product", Price=31.8, Popularity=2, PathOfImage="", CategoryID=2},
+                new Souvenir{ Name="Test Art", Description="This is a test product", Price=93.8, Popularity=3, PathOfImage="", CategoryID=3},
+                new Souvenir{ Name="Test Homeware", Description="This is a test product", Price=3.8, Popularity=4, PathOfImage="", CategoryID=4},
+                new Souvenir{ Name="Test Clothing", Description="This is a test product", Price=13.8, Popularity=5, PathOfImage="", CategoryID=5},
+                new Souvenir{ Name="Test Bags", Description="This is a test product", Price=33.8, Popularity=6, PathOfImage="", CategoryID=6},
             };
             foreach(Souvenir souvenir in souvenirs)
             {

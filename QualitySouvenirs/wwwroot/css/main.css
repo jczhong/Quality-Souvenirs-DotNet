@@ -88,3 +88,16 @@
     padding-bottom: 10px;
 }
 
+.ProductFilterRow {
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 1em;
+}
+
+.ProductFilterRow > .ProductFilterCol {
+    margin-right: 1em;
+}
+
+.ProductFilterCol > .ProductFilterDelete {
+    text-decoration: none;
+}
