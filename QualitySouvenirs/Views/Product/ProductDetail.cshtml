@@ -1,0 +1,23 @@
+﻿@model QualitySouvenirs.Models.Souvenir
+
+@{
+    ViewData["Title"] = "ProductDetail";
+}
+
+
+<div class="row">        
+    <div class="col-md-6 col-md-offset-3">
+        <h2>ProductDetail</h2>
+        <div class="card">
+            <div class="text-center">
+                <img class="card-img-top img-fluid" src="http://placehold.it/150x200" alt="">
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">@Html.DisplayFor(model => model.Name)</h3>
+                <h4>@Html.DisplayFor(model => model.Price)</h4>
+                <p class="card-text">@Html.DisplayFor(model => model.Description)</p>
+                <div class="ProductOrder text-center"><button type="button" class="btn btn-default">Add to Cart</button></div>
+            </div>
+        </div>
+    </div>
+</div>

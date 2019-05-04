@@ -70,7 +70,8 @@
     {
         <div class="ProductItem">
             <div class="ProductImag text-center">
-                <a><img src="http://placehold.it/150x200" /></a>
+                <a asp-controller="Product" asp-action="ProductDetail" 
+                    asp-route-id="@item.ID"><img src="http://placehold.it/150x200" /></a>
             </div>
             <div class="ProductName text-center">@Html.DisplayFor(modelItem => item.Name)</div>
             <div class="ProductPrice text-center">$@Html.DisplayFor(modelItem => item.Price)</div>

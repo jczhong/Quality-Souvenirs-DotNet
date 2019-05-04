@@ -100,5 +100,20 @@ namespace QualitySouvenirs.Controllers
 
             return View(souvenirs);
         }
+
+        public async Task<IActionResult> ProductDetail(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var souvenir = await _context.Souvenirs.FindAsync(id);
+            if (souvenir == null)
+            {
+                return NotFound();
+            }
+            return View(souvenir);
+        }
     }
 }
