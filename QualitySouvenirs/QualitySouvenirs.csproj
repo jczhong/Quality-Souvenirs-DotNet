@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Identity\Services\" />
     <Folder Include="Data\" />
     <Folder Include="wwwroot\images\Categories\" />
     <Folder Include="wwwroot\images\about\" />
