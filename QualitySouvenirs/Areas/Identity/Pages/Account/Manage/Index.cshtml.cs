@@ -47,6 +47,9 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [Required]
+            public string Address { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -66,7 +69,8 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage
             Input = new InputModel
             {
                 Email = email,
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                Address = user.Address
             };
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
@@ -108,6 +112,13 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage
                     throw new InvalidOperationException($"Unexpected error occurred setting phone number for user with ID '{userId}'.");
                 }
             }
+
+            if (Input.Address != user.Address)
+            {
+                user.Address = Input.Address;
+            }
+
+            await _userManager.UpdateAsync(user);
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
