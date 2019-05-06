@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using QualitySouvenirs.Data;
+using QualitySouvenirs.Models;
 
 namespace QualitySouvenirs
 {
@@ -29,7 +30,7 @@ namespace QualitySouvenirs
         {
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<AppUser>()
                 .AddEntityFrameworkStores<ApplicationContext>();
 
             services.Configure<CookiePolicyOptions>(options =>

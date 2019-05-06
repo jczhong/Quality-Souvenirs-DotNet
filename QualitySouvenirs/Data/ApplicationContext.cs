@@ -5,7 +5,7 @@ using QualitySouvenirs.Models;
 
 namespace QualitySouvenirs.Data
 {
-    public class ApplicationContext : IdentityDbContext
+    public class ApplicationContext : IdentityDbContext<AppUser>
     {
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
