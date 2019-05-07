@@ -28,8 +28,6 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage
             _emailSender = emailSender;
         }
 
-        public string Username { get; set; }
-
         public bool IsEmailConfirmed { get; set; }
 
         [TempData]
@@ -40,6 +38,10 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
+            [Required]
+            [Display(Name = "Full Name")]
+            public string FullName { get; set; }
+
             [Required]
             [EmailAddress]
             public string Email { get; set; }
@@ -60,14 +62,12 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            var userName = await _userManager.GetUserNameAsync(user);
             var email = await _userManager.GetEmailAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
-            Username = userName;
-
             Input = new InputModel
             {
+                FullName = user.FullName,
                 Email = email,
                 PhoneNumber = phoneNumber,
                 Address = user.Address
@@ -89,6 +89,11 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
+
+            if (Input.FullName != user.FullName)
+            {
+                user.FullName = Input.FullName;
             }
 
             var email = await _userManager.GetEmailAsync(user);
