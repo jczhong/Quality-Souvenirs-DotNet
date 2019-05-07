@@ -1,14 +1,21 @@
 ﻿using QualitySouvenirs.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
+using QualitySouvenirs.Authorization;
 
 namespace QualitySouvenirs.Data
 {
     public static class DbInitializer
     {
-        public static void Initialize(ApplicationContext context)
+        public static async Task Initialize(IServiceProvider serviceProvider, ApplicationContext context)
         {
             context.Database.EnsureCreated();
+
+            //TODO Consider using Secret Manager Tool instead
+            await EnsureUserRole(serviceProvider, "admin@z1c2.com", "Admin@z1c2");
 
             if (context.Souvenirs.Any())
             {
@@ -44,6 +51,41 @@ namespace QualitySouvenirs.Data
                 context.Souvenirs.Add(souvenir);
             }
             context.SaveChanges();
+        }
+
+        private static async Task EnsureUserRole(IServiceProvider serviceProvider, string UserName, string Password)
+        {
+            var userManager = serviceProvider.GetService<UserManager<AppUser>>();
+            if (userManager == null)
+            {
+                throw new Exception("userManager null");
+            }
+
+            //create default admin account
+            var user = await userManager.FindByNameAsync(UserName);
+            if (user == null)
+            {
+                user = new AppUser { UserName = UserName, FullName = Roles.Admin, Email = UserName };
+                await userManager.CreateAsync(user, Password);
+            }
+
+            var roleManager = serviceProvider.GetService<RoleManager<IdentityRole>>();
+            if (roleManager == null)
+            {
+                throw new Exception("roleManager null");
+            }
+
+            //create roles
+            if (!await roleManager.RoleExistsAsync(Roles.Admin))
+            {
+                await roleManager.CreateAsync(new IdentityRole(Roles.Admin));
+            }
+            if (!await roleManager.RoleExistsAsync(Roles.Customer))
+            {
+                await roleManager.CreateAsync(new IdentityRole(Roles.Customer));
+            }
+
+            await userManager.AddToRoleAsync(user, Roles.Admin);
         }
     }
 }

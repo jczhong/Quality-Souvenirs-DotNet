@@ -24,7 +24,7 @@ namespace QualitySouvenirs
                 try
                 {
                     var context = services.GetRequiredService<ApplicationContext>();
-                    DbInitializer.Initialize(context);
+                    DbInitializer.Initialize(services, context).Wait();
                 }
                 catch (Exception e)
                 {

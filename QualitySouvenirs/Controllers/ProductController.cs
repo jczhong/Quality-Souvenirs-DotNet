@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QualitySouvenirs.Data;
@@ -9,6 +10,7 @@ using QualitySouvenirs.Models;
 
 namespace QualitySouvenirs.Controllers
 {
+    [AllowAnonymous]
     public class ProductController : Controller
     {
         private readonly ApplicationContext _context;
