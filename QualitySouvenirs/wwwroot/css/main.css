@@ -101,3 +101,9 @@
 .ProductFilterCol > .ProductFilterDelete {
     text-decoration: none;
 }
+
+.fa-shopping-cart {
+    font-size: 20px;
+    color: white;
+    padding-right: 0.5em;
+}

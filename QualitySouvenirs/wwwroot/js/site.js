@@ -27,4 +27,48 @@ $(document).ready(function () {
         }
         location.href = url;
     });
+
+    $('button[id^=AddToCart-]').click(function () {
+        var id = this.value;
+        $.post("/ShoppingCart/Add",
+            {
+                id: id,
+                quantity: 1
+            },
+            function (data, status) {
+                if (status == "success") {
+                    var count = $('#CartCount').text();
+                    if (count == undefined) {
+                        count = 0;
+                    }
+                    count = Number(count);
+                    count += 1;
+                    $("#CartCount").text(count);
+                } else {
+                    alert("Out of stock!");
+                }
+            });
+    });
+
+    $('button[id^=RemoveFromCart-]').click(function () {
+        var id = this.value;
+        $.post("/ShoppingCart/Remove",
+            {
+                id: id,
+                quantity: 1
+            },
+            function (data, status) {
+                if (status == "success") {
+                    var count = $("#CartCount").text();
+                    if (count == undefined) {
+                        count = 0;
+                    }
+                    count = Number(count);
+                    if (count > 0) {
+                        count -= 1;
+                        $("#CartCount").text(count);
+                    }
+                }
+            });
+    });
 })
