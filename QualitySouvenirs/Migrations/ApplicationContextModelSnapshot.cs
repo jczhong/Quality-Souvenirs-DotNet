@@ -209,7 +209,11 @@ namespace QualitySouvenirs.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Address");
+
                     b.Property<DateTime>("Date");
+
+                    b.Property<string>("FullName");
 
                     b.Property<double>("GST");
 
@@ -217,7 +221,11 @@ namespace QualitySouvenirs.Migrations
 
                     b.Property<string>("OrderStatus");
 
+                    b.Property<string>("PhoneNumber");
+
                     b.Property<double>("SubTotal");
+
+                    b.Property<string>("UserID");
 
                     b.HasKey("ID");
 
@@ -230,19 +238,15 @@ namespace QualitySouvenirs.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("ItemPrice");
-
-                    b.Property<int?>("OrderID");
+                    b.Property<int>("OrderID");
 
                     b.Property<int>("Quantity");
 
-                    b.Property<int?>("SouvenirID");
+                    b.Property<int>("SouvenirID");
 
                     b.HasKey("ID");
 
                     b.HasIndex("OrderID");
-
-                    b.HasIndex("SouvenirID");
 
                     b.ToTable("OrderItem");
                 });
@@ -338,13 +342,10 @@ namespace QualitySouvenirs.Migrations
 
             modelBuilder.Entity("QualitySouvenirs.Models.OrderItem", b =>
                 {
-                    b.HasOne("QualitySouvenirs.Models.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderID");
-
-                    b.HasOne("QualitySouvenirs.Models.Souvenir", "Souvenir")
-                        .WithMany()
-                        .HasForeignKey("SouvenirID");
+                    b.HasOne("QualitySouvenirs.Models.Order")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

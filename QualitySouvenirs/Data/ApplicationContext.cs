@@ -14,9 +14,9 @@ namespace QualitySouvenirs.Data
 
         public DbSet<Souvenir> Souvenirs { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Supplier> suppliers { get; set; }
-        public DbSet<Order> orders { get; set; }
-        public DbSet<OrderItem> orderItems { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

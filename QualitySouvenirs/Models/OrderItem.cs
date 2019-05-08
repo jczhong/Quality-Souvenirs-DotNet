@@ -8,9 +8,8 @@ namespace QualitySouvenirs.Models
     public class OrderItem
     {
         public int ID { get; set; }
-        public Order Order { get; set; }
-        public double ItemPrice { get; set; }
-        public Souvenir Souvenir { get; set; }
+        public int SouvenirID { get; set; }
+        public int OrderID { get; set; }
         public int Quantity { get; set; }
     }
 }

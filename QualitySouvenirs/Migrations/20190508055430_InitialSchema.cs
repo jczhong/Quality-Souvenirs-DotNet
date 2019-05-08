@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace QualitySouvenirs.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class InitialSchema : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -69,6 +69,10 @@ namespace QualitySouvenirs.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    UserID = table.Column<string>(nullable: true),
+                    FullName = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
                     OrderStatus = table.Column<string>(nullable: true),
                     SubTotal = table.Column<double>(nullable: false),
                     GST = table.Column<double>(nullable: false),
@@ -227,9 +231,8 @@ namespace QualitySouvenirs.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    OrderID = table.Column<int>(nullable: true),
-                    ItemPrice = table.Column<double>(nullable: false),
-                    SouvenirID = table.Column<int>(nullable: true),
+                    SouvenirID = table.Column<int>(nullable: false),
+                    OrderID = table.Column<int>(nullable: false),
                     Quantity = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -240,13 +243,7 @@ namespace QualitySouvenirs.Migrations
                         column: x => x.OrderID,
                         principalTable: "Order",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_OrderItem_Souvenir_SouvenirID",
-                        column: x => x.SouvenirID,
-                        principalTable: "Souvenir",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -292,11 +289,6 @@ namespace QualitySouvenirs.Migrations
                 name: "IX_OrderItem_OrderID",
                 table: "OrderItem",
                 column: "OrderID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OrderItem_SouvenirID",
-                table: "OrderItem",
-                column: "SouvenirID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -323,6 +315,9 @@ namespace QualitySouvenirs.Migrations
                 name: "OrderItem");
 
             migrationBuilder.DropTable(
+                name: "Souvenir");
+
+            migrationBuilder.DropTable(
                 name: "Supplier");
 
             migrationBuilder.DropTable(
@@ -333,9 +328,6 @@ namespace QualitySouvenirs.Migrations
 
             migrationBuilder.DropTable(
                 name: "Order");
-
-            migrationBuilder.DropTable(
-                name: "Souvenir");
         }
     }
 }

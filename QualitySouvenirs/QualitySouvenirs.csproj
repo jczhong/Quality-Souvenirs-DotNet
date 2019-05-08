@@ -9,6 +9,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20190505042137_CreateIdentitySchema.cs" />
     <Compile Remove="Migrations\20190505042137_CreateIdentitySchema.Designer.cs" />
+    <Compile Remove="Migrations\20190507004005_CreateIdentitySchema.cs" />
+    <Compile Remove="Migrations\20190507004005_CreateIdentitySchema.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
