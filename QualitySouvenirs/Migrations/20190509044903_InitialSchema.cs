@@ -64,45 +64,6 @@ namespace QualitySouvenirs.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Order",
-                columns: table => new
-                {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    UserID = table.Column<string>(nullable: true),
-                    FullName = table.Column<string>(nullable: true),
-                    Address = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    OrderStatus = table.Column<string>(nullable: true),
-                    SubTotal = table.Column<double>(nullable: false),
-                    GST = table.Column<double>(nullable: false),
-                    GrandTotal = table.Column<double>(nullable: false),
-                    Date = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Order", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Souvenir",
-                columns: table => new
-                {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    Price = table.Column<double>(nullable: false),
-                    Popularity = table.Column<int>(nullable: false),
-                    PathOfImage = table.Column<string>(nullable: true),
-                    CategoryID = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Souvenir", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Supplier",
                 columns: table => new
                 {
@@ -226,24 +187,103 @@ namespace QualitySouvenirs.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OrderItem",
+                name: "Order",
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    SouvenirID = table.Column<int>(nullable: false),
-                    OrderID = table.Column<int>(nullable: false),
-                    Quantity = table.Column<int>(nullable: false)
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    SubTotal = table.Column<double>(nullable: false),
+                    GrandTotal = table.Column<double>(nullable: false),
+                    OrderStatus = table.Column<string>(nullable: true),
+                    Date = table.Column<DateTime>(nullable: false),
+                    AppUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderItem", x => x.ID);
+                    table.PrimaryKey("PK_Order", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_OrderItem_Order_OrderID",
+                        name: "FK_Order_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Souvenir",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Price = table.Column<double>(nullable: false),
+                    Popularity = table.Column<int>(nullable: false),
+                    PathOfImage = table.Column<string>(nullable: true),
+                    CategoryID = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Souvenir", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Souvenir_Category_CategoryID",
+                        column: x => x.CategoryID,
+                        principalTable: "Category",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CartItem",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CartID = table.Column<string>(nullable: true),
+                    Count = table.Column<int>(nullable: false),
+                    SouvenirID = table.Column<int>(nullable: true),
+                    DateCreated = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CartItem", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_CartItem_Souvenir_SouvenirID",
+                        column: x => x.SouvenirID,
+                        principalTable: "Souvenir",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrderDetail",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Quantity = table.Column<int>(nullable: false),
+                    SouvenirID = table.Column<int>(nullable: true),
+                    OrderID = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderDetail", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_OrderDetail_Order_OrderID",
                         column: x => x.OrderID,
                         principalTable: "Order",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OrderDetail_Souvenir_SouvenirID",
+                        column: x => x.SouvenirID,
+                        principalTable: "Souvenir",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -286,9 +326,29 @@ namespace QualitySouvenirs.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderItem_OrderID",
-                table: "OrderItem",
+                name: "IX_CartItem_SouvenirID",
+                table: "CartItem",
+                column: "SouvenirID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Order_AppUserId",
+                table: "Order",
+                column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderDetail_OrderID",
+                table: "OrderDetail",
                 column: "OrderID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderDetail_SouvenirID",
+                table: "OrderDetail",
+                column: "SouvenirID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Souvenir_CategoryID",
+                table: "Souvenir",
+                column: "CategoryID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -309,13 +369,10 @@ namespace QualitySouvenirs.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Category");
+                name: "CartItem");
 
             migrationBuilder.DropTable(
-                name: "OrderItem");
-
-            migrationBuilder.DropTable(
-                name: "Souvenir");
+                name: "OrderDetail");
 
             migrationBuilder.DropTable(
                 name: "Supplier");
@@ -324,10 +381,16 @@ namespace QualitySouvenirs.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "Order");
+
+            migrationBuilder.DropTable(
+                name: "Souvenir");
+
+            migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Order");
+                name: "Category");
         }
     }
 }

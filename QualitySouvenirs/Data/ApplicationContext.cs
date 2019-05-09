@@ -16,7 +16,9 @@ namespace QualitySouvenirs.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,7 +27,13 @@ namespace QualitySouvenirs.Data
             modelBuilder.Entity<Category>().ToTable("Category");
             modelBuilder.Entity<Supplier>().ToTable("Supplier");
             modelBuilder.Entity<Order>().ToTable("Order");
-            modelBuilder.Entity<OrderItem>().ToTable("OrderItem");
+            modelBuilder.Entity<OrderDetail>().ToTable("OrderDetail");
+            modelBuilder.Entity<CartItem>().ToTable("CartItem");
+
+            modelBuilder.Entity<OrderDetail>()
+                .HasOne(p => p.Order)
+                .WithMany(o => o.OrderDetails)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

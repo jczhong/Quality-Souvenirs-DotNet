@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace QualitySouvenirs.Models
 {
-    public class OrderItem
+    public class OrderDetail
     {
         public int ID { get; set; }
-        public int SouvenirID { get; set; }
-        public int OrderID { get; set; }
         public int Quantity { get; set; }
+        public Souvenir Souvenir { get; set; }
+        public Order Order { get; set; }
     }
 }

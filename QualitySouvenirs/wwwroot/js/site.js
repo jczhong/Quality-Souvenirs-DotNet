@@ -33,7 +33,7 @@ $(document).ready(function () {
         $.post("/ShoppingCart/Add",
             {
                 id: id,
-                quantity: 1
+                count: 1
             },
             function (data, status) {
                 if (status == "success") {
@@ -55,7 +55,7 @@ $(document).ready(function () {
         $.post("/ShoppingCart/Remove",
             {
                 id: id,
-                quantity: 1
+                count: 1
             },
             function (data, status) {
                 if (status == "success") {
