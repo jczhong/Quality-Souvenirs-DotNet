@@ -1,15 +1,11 @@
 ﻿@model IEnumerable<QualitySouvenirs.Models.Order>
 
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Order List";
 }
 
-<h2>Index</h2>
+<h2>Order List</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -26,7 +22,7 @@
                 @Html.DisplayNameFor(model => model.PhoneNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SubTotal)
+                @Html.DisplayNameFor(model => model.GST)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.GrandTotal)
@@ -56,7 +52,7 @@
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SubTotal)
+                @Html.DisplayFor(modelItem => item.GST)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.GrandTotal)
@@ -66,11 +62,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
             </td>
         </tr>
 }
