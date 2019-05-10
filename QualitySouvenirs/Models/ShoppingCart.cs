@@ -66,7 +66,7 @@ namespace QualitySouvenirs.Models
             }
         }
 
-        public void EmptyCart(ApplicationContext db)
+        public void ClearCart(ApplicationContext db)
         {
             var cartItems = db.CartItems.Where(c => c.CartID == ID);
             foreach (var cartItem in cartItems)
@@ -85,7 +85,19 @@ namespace QualitySouvenirs.Models
             return cartItems;
         }
 
-        public string GetCartId(HttpContext context)
+        public int GetCount(ApplicationContext db)
+        {
+            var count = 0;
+            var cartItems = db.CartItems.Where(c => c.CartID == ID).ToList();
+            foreach (var cartItem in cartItems)
+            {
+                count += cartItem.Count;
+            }
+
+            return count;
+        }
+
+        private string GetCartId(HttpContext context)
         {
             if (context.Session.GetString(CartSessionKey) == null)
             {

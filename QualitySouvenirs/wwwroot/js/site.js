@@ -28,46 +28,45 @@ $(document).ready(function () {
         location.href = url;
     });
 
+    function setCartCount(count) {
+        $("#CartCount").text(count);
+    }
+
+    function addCount(selector, count) {
+        var currentCount = $(selector).text();
+        if (currentCount == undefined) {
+            currentCount = 0;
+        }
+        currentCount = Number(currentCount);
+        currentCount += Number(count);
+        $(selector).text(currentCount);
+    }
+
+    (function() {
+        $.get("/ShoppingCart/GetCount", function (data, status) {
+            if (status == "success") {
+                setCartCount(data);
+            }
+        });
+    })();
+
     $('button[id^=AddToCart-]').click(function () {
-        var id = this.value;
-        $.post("/ShoppingCart/Add",
+        var count = this.value;
+        var id = $(this).attr("id").match(/AddToCart-(.*)/);
+        if (id != null) {
+            id = id[1];
+        }
+
+        $.post("/ShoppingCart/AddPOST",
             {
                 id: id,
-                count: 1
+                count: count
             },
             function (data, status) {
                 if (status == "success") {
-                    var count = $('#CartCount').text();
-                    if (count == undefined) {
-                        count = 0;
-                    }
-                    count = Number(count);
-                    count += 1;
-                    $("#CartCount").text(count);
+                    addCount('#CartCount', count);
                 } else {
                     alert("Out of stock!");
-                }
-            });
-    });
-
-    $('button[id^=RemoveFromCart-]').click(function () {
-        var id = this.value;
-        $.post("/ShoppingCart/Remove",
-            {
-                id: id,
-                count: 1
-            },
-            function (data, status) {
-                if (status == "success") {
-                    var count = $("#CartCount").text();
-                    if (count == undefined) {
-                        count = 0;
-                    }
-                    count = Number(count);
-                    if (count > 0) {
-                        count -= 1;
-                        $("#CartCount").text(count);
-                    }
                 }
             });
     });

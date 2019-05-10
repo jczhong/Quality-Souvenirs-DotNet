@@ -44,15 +44,53 @@
                 @Html.DisplayFor(modelItem => item.Count)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Souvenir.Price)
+                $@Html.DisplayFor(modelItem => item.Souvenir.Price)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                <a class="btn btn-default" asp-controller="ShoppingCart" asp-action="AddGET" asp-route-id="@item.Souvenir.ID" asp-route-count="1">+</a>
+                <a class="btn btn-default" asp-controller="ShoppingCart" asp-action="Remove" asp-route-id="@item.Souvenir.ID" asp-route-count="1">-</a> 
+                <a class="btn btn-default" asp-controller="ShoppingCart" asp-action="Remove" asp-route-id="@item.Souvenir.ID" asp-route-count="@item.Count">Delete</a>
             </td>
         </tr>
         }
     </tbody>
 </table>
 
+<h2>Order Summary</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Subtotal
+            </th>
+            <th>
+                GST(15%)
+            </th>
+            <th>
+                Grand Total
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if ((double)ViewData["SubTotal"] != 0.0)
+        {
+            <tr>
+                <td>
+                    $@ViewData["SubTotal"]
+                </td>
+                <td>
+                    $@ViewData["GST"]
+                </td>
+                <td>
+                    $@ViewData["GrandTotal"]
+                </td>
+                <td>
+                    <a class="btn btn-default" asp-controller="ShoppingCart" asp-action="ClearCart">Clear Cart</a>
+                    <a class="btn btn-default" asp-controller="ShoppingCart" asp-action="Checkout">Checkout</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
