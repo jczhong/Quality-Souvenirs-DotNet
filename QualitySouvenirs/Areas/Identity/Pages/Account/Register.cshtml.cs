@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using QualitySouvenirs.Authorization;
+using QualitySouvenirs.Share;
 using QualitySouvenirs.Models;
 
 namespace QualitySouvenirs.Areas.Identity.Pages.Account

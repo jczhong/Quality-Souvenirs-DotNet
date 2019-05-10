@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using QualitySouvenirs.Authorization;
+using QualitySouvenirs.Share;
 
 namespace QualitySouvenirs.Data
 {
