@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using QualitySouvenirs.Data;
 using QualitySouvenirs.Models;
+using QualitySouvenirs.Share;
 
 namespace QualitySouvenirs.Controllers
 {
@@ -91,7 +92,7 @@ namespace QualitySouvenirs.Controllers
                 order.SubTotal = subTotal;
                 order.GST = gst;
                 order.GrandTotal = grandTotal;
-                order.OrderStatus = "waiting";
+                order.OrderStatus = OrderStatus.Waiting;
                 order.Date = DateTime.Today;
                 order.OrderDetails = orderDetails;
                 //_context.Add(order);
