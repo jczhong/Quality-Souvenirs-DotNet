@@ -85,11 +85,9 @@ namespace QualitySouvenirs.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("ProviderKey")
-                        .HasMaxLength(128);
+                    b.Property<string>("ProviderKey");
 
                     b.Property<string>("ProviderDisplayName");
 
@@ -120,11 +118,9 @@ namespace QualitySouvenirs.Migrations
                 {
                     b.Property<string>("UserId");
 
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(128);
+                    b.Property<string>("Name");
 
                     b.Property<string>("Value");
 
@@ -230,21 +226,27 @@ namespace QualitySouvenirs.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Address");
+                    b.Property<string>("Address")
+                        .IsRequired();
 
                     b.Property<string>("AppUserId");
 
                     b.Property<DateTime>("Date");
 
-                    b.Property<string>("FirstName");
+                    b.Property<string>("FirstName")
+                        .IsRequired();
+
+                    b.Property<double>("GST");
 
                     b.Property<double>("GrandTotal");
 
-                    b.Property<string>("LastName");
+                    b.Property<string>("LastName")
+                        .IsRequired();
 
                     b.Property<string>("OrderStatus");
 
-                    b.Property<string>("PhoneNumber");
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired();
 
                     b.Property<double>("SubTotal");
 
