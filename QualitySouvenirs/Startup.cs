@@ -32,9 +32,10 @@ namespace QualitySouvenirs
         {
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<AppUser>()
-                .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationContext>();
+            services.AddIdentity<AppUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationContext>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
