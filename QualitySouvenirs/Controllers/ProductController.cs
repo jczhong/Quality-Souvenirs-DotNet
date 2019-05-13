@@ -22,7 +22,7 @@ namespace QualitySouvenirs.Controllers
             categories = _context.Categories.ToList();
         }
 
-        public IActionResult Index(int? id, bool? byId, string sort, string search)
+        public async Task<IActionResult> Index(int? id, bool? byId, string sort, string search,int? page)
         {
             int currentID;
             string currentSort;
@@ -99,8 +99,9 @@ namespace QualitySouvenirs.Controllers
                     souvenirs = souvenirs.OrderBy(s => s.Price);
                     break;
             }
-
-            return View(souvenirs);
+            int pageSize = 4;
+            //return View(souvenirs);
+            return View(await PaginatedList<Souvenir>.CreateAsync(souvenirs.AsNoTracking(), page ?? 1, pageSize));
         }
 
         public async Task<IActionResult> ProductDetail(int? id)
