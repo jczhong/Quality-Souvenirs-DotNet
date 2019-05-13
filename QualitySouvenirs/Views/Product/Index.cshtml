@@ -1,4 +1,5 @@
-﻿@model IEnumerable<QualitySouvenirs.Models.Souvenir>
+﻿@*@model IEnumerable<QualitySouvenirs.Models.Souvenir>*@
+@model PaginatedList<QualitySouvenirs.Models.Souvenir>
 
 @{
     ViewData["Title"] = "Product";
@@ -74,8 +75,8 @@
         var errImg = @Href("~/images/Unitec.jpg");
         <div class="ProductItem">
             <div class="ProductImag text-center">
-                <a asp-controller="Product" asp-action="ProductDetail" 
-                    asp-route-id="@item.ID"><img style="width: 250px; height: auto;" src="@imgUrl" alt="Product Image" onerror="this.onerror = null; this.src = '@errImg'" /></a>
+                <a asp-controller="Product" asp-action="ProductDetail"
+                   asp-route-id="@item.ID"><img style="width: auto; height: 200px;" src="@imgUrl" alt="Product Image" onerror="this.onerror = null; this.src = '@errImg'" /></a>
             </div>
             <div class="ProductName text-center">@Html.DisplayFor(modelItem => item.Name)</div>
             <div class="ProductPrice text-center">$@Html.DisplayFor(modelItem => item.Price)</div>
@@ -83,3 +84,22 @@
         </div>
     }
 </div>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-page="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-page="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
