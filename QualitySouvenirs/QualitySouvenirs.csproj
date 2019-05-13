@@ -17,6 +17,8 @@
     <Compile Remove="Migrations\20190509044830_InitialSchema.Designer.cs" />
     <Compile Remove="Migrations\20190509044903_InitialSchema.cs" />
     <Compile Remove="Migrations\20190509044903_InitialSchema.Designer.cs" />
+    <Compile Remove="Migrations\20190510123121_InitialSchema.cs" />
+    <Compile Remove="Migrations\20190510123121_InitialSchema.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

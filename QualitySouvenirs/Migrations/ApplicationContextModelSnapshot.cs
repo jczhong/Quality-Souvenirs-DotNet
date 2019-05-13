@@ -398,8 +398,9 @@ namespace QualitySouvenirs.Migrations
             modelBuilder.Entity("QualitySouvenirs.Models.Souvenir", b =>
                 {
                     b.HasOne("QualitySouvenirs.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryID");
+                        .WithMany("Souvenirs")
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 #pragma warning restore 612, 618
         }
