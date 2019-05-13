@@ -39,17 +39,17 @@ namespace QualitySouvenirs.Data
 
             var souvenirs = new Souvenir[]
             {
-                new Souvenir{ Name="Test Maori Gifts", Description="This is a test product", Price=12.8, Popularity=1, PathOfImage="", Category=categories.Single(c => c.ID == 1)},
+                new Souvenir{ Name="Test Maori Gifts", Description="This is a test product", Price=12.8, Popularity=1, PathOfImage="/images/Products/Test Maori Gifts.png", Category=categories.Single(c => c.ID == 1)},
                 new Souvenir{ Name="Large Maori Wood Hook Necklace", Description="This Maori Wood Hook Necklace is larger than most bone or greenstone necklaces, measuring approximately 6.6cm long.", Price=29.5, Popularity=1, PathOfImage="/images/Products/HookNecklace.jpg", Category=categories.Single(c => c.ID == 1)},
                 new Souvenir{ Name="Maori Kauri Wheku Necklace", Description="This Maori Wheku Necklace is made from one of our most beautiful New Zealand timbers, Kauri.  Crafted from ancient swamp kauri, the timber is estimated to be more than 40,000 years old!", Price=19, Popularity=1, PathOfImage="/images/Products/WhekuNecklace.jpg", Category=categories.Single(c => c.ID == 1)},
                 new Souvenir{ Name="Maori Kauri Tiki Necklace", Description="This Maori Tiki Necklace is made from one of our most beautiful New Zealand timbers, Kauri.  Crafted from ancient swamp kauri, the timber is estimated to be more than 40,000 years old!", Price=19, Popularity=1, PathOfImage="/images/Products/TikiNecklace.jpg", Category=categories.Single(c => c.ID == 1)},
                 new Souvenir{ Name="NZ Paua Shell Maori Twist Necklace", Description="This NZ Paua Shell Maori Twist Necklace is a real beauty.", Price=29.95, Popularity=1, PathOfImage="/images/Products/TwistNecklace.jpg", Category=categories.Single(c => c.ID == 1)},
                 new Souvenir{ Name="NZ Maori Bone and Wood Hook Necklace", Description="This NZ Maori Bone and Wood Hook Necklace hangs from a string cord,", Price=35, Popularity=1, PathOfImage="/images/Products/Bone and Wood Hook Necklace.jpg", Category=categories.Single(c => c.ID == 1)},
-                new Souvenir{ Name="Test Jewellery", Description="This is a test product", Price=31.8, Popularity=2, PathOfImage="", Category=categories.Single(c => c.ID == 2)},
-                new Souvenir{ Name="Test Art", Description="This is a test product", Price=93.8, Popularity=3, PathOfImage="", Category=categories.Single(c => c.ID == 3)},
-                new Souvenir{ Name="Test Homeware", Description="This is a test product", Price=3.8, Popularity=4, PathOfImage="", Category=categories.Single(c => c.ID == 4)},
-                new Souvenir{ Name="Test Clothing", Description="This is a test product", Price=13.8, Popularity=5, PathOfImage="", Category=categories.Single(c => c.ID == 5)},
-                new Souvenir{ Name="Test Bags", Description="This is a test product", Price=33.8, Popularity=6, PathOfImage="", Category=categories.Single(c => c.ID == 6)},
+                new Souvenir{ Name="Test Jewellery", Description="This is a test product", Price=31.8, Popularity=2, PathOfImage="/images/Products/Test Jewellery.jpg", Category=categories.Single(c => c.ID == 2)},
+                new Souvenir{ Name="Test Art", Description="This is a test product", Price=49.90, Popularity=3, PathOfImage="/images/Products/testart.jpg", Category=categories.Single(c => c.ID == 3)},
+                new Souvenir{ Name="Test Homeware", Description="This is a test product", Price=27.5, Popularity=4, PathOfImage="/images/Products/Homeware.jpg", Category=categories.Single(c => c.ID == 4)},
+                new Souvenir{ Name="Test Clothing", Description="This is a test product", Price=13.8, Popularity=5, PathOfImage="/images/Products/Test Clothing.jpg", Category=categories.Single(c => c.ID == 5)},
+                new Souvenir{ Name="Test Bags", Description="This is a test product", Price=5.99, Popularity=6, PathOfImage="/images/Products/Test Bags.jpg", Category=categories.Single(c => c.ID == 6)},
             };
             foreach(Souvenir souvenir in souvenirs)
             {
