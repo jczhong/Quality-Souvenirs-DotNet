@@ -1,0 +1,41 @@
+﻿@page
+@model QualitySouvenirs.Areas.Identity.Pages.Account.Manage.Orders.EditModel
+
+@{
+    ViewData["Title"] = "OrderEdit";
+    Layout = "~/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
+}
+
+<h2>OrderEdit</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-route-id="@Model.Input.ID" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Input.ID"></label>
+                <input asp-for="Input.ID" class="form-control" disabled/>
+                <span asp-validation-for="Input.ID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.LastName"></label>
+                <input asp-for="Input.LastName" class="form-control" disabled/>
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Status"></label>
+                <select asp-for="Input.Status" asp-items="Model.OrderStatus.Statuses"></select>
+                <span asp-validation-for="Input.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+

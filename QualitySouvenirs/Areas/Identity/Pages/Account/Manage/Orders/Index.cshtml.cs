@@ -10,14 +10,14 @@ using QualitySouvenirs.Data;
 using QualitySouvenirs.Models;
 using QualitySouvenirs.Share;
 
-namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage
+namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.Orders
 {
-    public class OrdersModel : PageModel
+    public class IndexModel : PageModel
     {
         private readonly ApplicationContext _context;
         private readonly UserManager<AppUser> _userManager;
 
-        public OrdersModel(ApplicationContext context, UserManager<AppUser> userManager)
+        public IndexModel(ApplicationContext context, UserManager<AppUser> userManager)
         {
             _context = context;
             _userManager = userManager;

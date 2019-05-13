@@ -3,11 +3,13 @@
 @using QualitySouvenirs.Models
 @using QualitySouvenirs.Share
 
-@model QualitySouvenirs.Areas.Identity.Pages.Account.Manage.OrdersModel
+@model QualitySouvenirs.Areas.Identity.Pages.Account.Manage.Orders.IndexModel
 @inject UserManager<AppUser> UserManager
 
 @{
     ViewData["Title"] = "Orders";
+    Layout = "~/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
+
     var _user = await UserManager.GetUserAsync(User);
 }
 
@@ -61,9 +63,9 @@
             </td>
             @if (await UserManager.IsInRoleAsync(_user, Roles.Admin))
             {
-                <td>
-
-                </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a>
+            </td>
             }
         </tr>
         }

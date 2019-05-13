@@ -24,6 +24,10 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage
         {
             var activePage = viewContext.ViewData["ActivePage"] as string
                 ?? System.IO.Path.GetFileNameWithoutExtension(viewContext.ActionDescriptor.DisplayName);
+            if (viewContext.ActionDescriptor.DisplayName.StartsWith("/Account/Manage/Orders"))
+            {
+                activePage = "Orders";
+            }
             return string.Equals(activePage, page, StringComparison.OrdinalIgnoreCase) ? "active" : null;
         }
     }
