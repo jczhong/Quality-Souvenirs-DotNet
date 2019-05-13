@@ -14,11 +14,15 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage
 
         public static string Orders => "Orders";
 
+        public static string Categories => "Categories";
+
         public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
 
         public static string ChangePasswordNavClass(ViewContext viewContext) => PageNavClass(viewContext, ChangePassword);
 
         public static string OrdersNavClass(ViewContext viewContext) => PageNavClass(viewContext, Orders);
+
+        public static string CategoriesNavClass(ViewContext viewContext) => PageNavClass(viewContext, Categories);
     
         public static string PageNavClass(ViewContext viewContext, string page)
         {
@@ -26,7 +30,11 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage
                 ?? System.IO.Path.GetFileNameWithoutExtension(viewContext.ActionDescriptor.DisplayName);
             if (viewContext.ActionDescriptor.DisplayName.StartsWith("/Account/Manage/Orders"))
             {
-                activePage = "Orders";
+                activePage = Orders;
+            }
+            else if (viewContext.ActionDescriptor.DisplayName.StartsWith("/Account/Manage/Categories"))
+            {
+                activePage = Categories;
             }
             return string.Equals(activePage, page, StringComparison.OrdinalIgnoreCase) ? "active" : null;
         }
