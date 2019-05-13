@@ -61,7 +61,7 @@ namespace QualitySouvenirs.Controllers
 
             if (currentID != -1)
             {
-                souvenirs = souvenirs.Where<Souvenir>(s => s.ID == currentID);
+                souvenirs = souvenirs.Where<Souvenir>(s => s.Category.ID == currentID);
             }
 
             if (search != null)
