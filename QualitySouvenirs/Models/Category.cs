@@ -10,5 +10,6 @@ namespace QualitySouvenirs.Models
         public int ID { get; set; }
         public string Name { get; set; }
         public string PathOfImage { get; set; }
+        public ICollection<Souvenir> Souvenirs { get; set; }
     }
 }

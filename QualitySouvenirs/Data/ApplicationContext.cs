@@ -34,6 +34,11 @@ namespace QualitySouvenirs.Data
                 .HasOne(p => p.Order)
                 .WithMany(o => o.OrderDetails)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Souvenir>()
+                .HasOne(p => p.Category)
+                .WithMany(o => o.Souvenirs)
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

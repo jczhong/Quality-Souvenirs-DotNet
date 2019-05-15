@@ -10,7 +10,7 @@ using QualitySouvenirs.Data;
 namespace QualitySouvenirs.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20190510123121_InitialSchema")]
+    [Migration("20190513071551_InitialSchema")]
     partial class InitialSchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -400,8 +400,9 @@ namespace QualitySouvenirs.Migrations
             modelBuilder.Entity("QualitySouvenirs.Models.Souvenir", b =>
                 {
                     b.HasOne("QualitySouvenirs.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryID");
+                        .WithMany("Souvenirs")
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 #pragma warning restore 612, 618
         }

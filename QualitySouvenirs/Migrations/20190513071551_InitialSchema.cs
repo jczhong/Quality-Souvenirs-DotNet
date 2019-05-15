@@ -235,7 +235,7 @@ namespace QualitySouvenirs.Migrations
                         column: x => x.CategoryID,
                         principalTable: "Category",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
