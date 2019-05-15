@@ -1,27 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using QualitySouvenirs.Data;
-using QualitySouvenirs.Models;
+using QualitySouvenirs.Share;
+using QualitySouvenirs.Utilities;
 
 namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.Categories
 {
     public class EditModel : PageModel
     {
-        private readonly QualitySouvenirs.Data.ApplicationContext _context;
+        private readonly ApplicationContext _context;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
-        public EditModel(QualitySouvenirs.Data.ApplicationContext context)
+        public EditModel(ApplicationContext context, IHostingEnvironment environment)
         {
             _context = context;
+            _hostingEnvironment = environment;
+        }
+
+        public class InputModel
+        {
+            public int ID { get; set; }
+
+            [Required]
+            public string Name { get; set; }
+
+            [Required]
+            [Display(Name = "Image File")]
+            public IFormFile UploadFile { get; set; }
         }
 
         [BindProperty]
-        public Category Category { get; set; }
+        public InputModel Input { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,23 +47,53 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.Categories
                 return NotFound();
             }
 
-            Category = await _context.Categories.FirstOrDefaultAsync(m => m.ID == id);
+            var category = await _context.Categories.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (Category == null)
+            if (category == null)
             {
                 return NotFound();
             }
+
+            Input = new InputModel
+            {
+                ID = category.ID,
+                Name = category.Name
+            };
+
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid && id == null)
             {
                 return Page();
             }
 
-            _context.Attach(Category).State = EntityState.Modified;
+            if (FileHelpers.ProcessImageFormFile(Input.UploadFile, ModelState) == false)
+            {
+                return Page();
+            }
+
+            var category = await _context.Categories.FirstOrDefaultAsync(m => m.ID == id);
+            category.Name = Input.Name;
+
+            var filePath = new Uri(Path.Join(_hostingEnvironment.WebRootPath, category.PathOfImage)).LocalPath;
+            if (System.IO.File.Exists(filePath))
+            {
+                System.IO.File.Delete(filePath);
+
+                filePath = MyPath.CategoryImage + Guid.NewGuid().ToString() + Input.UploadFile.FileName;
+                category.PathOfImage = filePath;
+
+                filePath = new Uri(Path.Join(_hostingEnvironment.WebRootPath, filePath)).LocalPath;
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await Input.UploadFile.CopyToAsync(fileStream);
+                }
+            }
+
+            _context.Attach(category).State = EntityState.Modified;
 
             try
             {
@@ -54,7 +101,7 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.Categories
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CategoryExists(Category.ID))
+                if (!CategoryExists(category.ID))
                 {
                     return NotFound();
                 }

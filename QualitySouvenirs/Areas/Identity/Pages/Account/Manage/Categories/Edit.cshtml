@@ -12,18 +12,18 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form asp-route-id="@Model.Input.ID" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Category.ID" />
+            <input type="hidden" asp-for="Input.ID" />
             <div class="form-group">
-                <label asp-for="Category.Name" class="control-label"></label>
-                <input asp-for="Category.Name" class="form-control" />
-                <span asp-validation-for="Category.Name" class="text-danger"></span>
+                <label asp-for="Input.Name" class="control-label"></label>
+                <input asp-for="Input.Name" class="form-control" />
+                <span asp-validation-for="Input.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Category.PathOfImage" class="control-label"></label>
-                <input asp-for="Category.PathOfImage" class="form-control" />
-                <span asp-validation-for="Category.PathOfImage" class="text-danger"></span>
+                <label asp-for="Input.UploadFile" class="control-label"></label>
+                <input asp-for="Input.UploadFile" class="form-control" type="file" />
+                <span asp-validation-for="Input.UploadFile" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
