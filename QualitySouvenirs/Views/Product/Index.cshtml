@@ -33,6 +33,8 @@
                   asp-route-byId="@ViewData["FilterById"]"
                   asp-route-sort="@ViewData["SortType"]">
                 <input class="form-control" type="search" placeholder="Search for product" name="search" />
+                <input style="width:100px" type="number" class="form-control" id="minprice" name="minprice" placeholder="minprice" min="0">
+                <input style="width:100px" type="number" class="form-control" id="maxprice" name="maxprice" placeholder="maxprice" min="0">
                 <button class="btn btn-outline-secondary" type="submit">Go</button>
             </form>
         </div>
@@ -76,7 +78,7 @@
         <div class="ProductItem">
             <div class="ProductImag text-center">
                 <a asp-controller="Product" asp-action="ProductDetail"
-                   asp-route-id="@item.ID"><img style="width: auto; height: 200px;" src="@imgUrl" alt="Product Image" onerror="this.onerror = null; this.src = '@errImg'" /></a>
+                   asp-route-id="@item.ID"><img style="width: 160px; height: 100%;" src="@imgUrl" alt="Product Image" onerror="this.onerror = null; this.src = '@errImg'" /></a>
             </div>
             <div class="ProductName text-center">@Html.DisplayFor(modelItem => item.Name)</div>
             <div class="ProductPrice text-center">$@Html.DisplayFor(modelItem => item.Price)</div>
@@ -93,6 +95,8 @@
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-page="@(Model.PageIndex - 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   asp-route-minprice="@ViewData["MinPrice"]"
+   asp-route-maxprice="@ViewData["MaxPrice"]"
    class="btn btn-default @prevDisabled">
     Previous
 </a>
@@ -100,6 +104,8 @@
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-page="@(Model.PageIndex + 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   asp-route-minprice="@ViewData["MinPrice"]"
+   asp-route-maxprice="@ViewData["MaxPrice"]"
    class="btn btn-default @nextDisabled">
     Next
 </a>
