@@ -16,7 +16,7 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.Categories
     public class CreateModel : PageModel
     {
         private readonly ApplicationContext _context;
-        private IHostingEnvironment _hostingEnvironment;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
         public CreateModel(ApplicationContext context, IHostingEnvironment environment)
         {

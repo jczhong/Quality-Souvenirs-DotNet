@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -12,11 +12,13 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.Categories
 {
     public class DeleteModel : PageModel
     {
-        private readonly QualitySouvenirs.Data.ApplicationContext _context;
+        private readonly ApplicationContext _context;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
-        public DeleteModel(QualitySouvenirs.Data.ApplicationContext context)
+        public DeleteModel(ApplicationContext context, IHostingEnvironment environment)
         {
             _context = context;
+            _hostingEnvironment = environment;
         }
 
         [BindProperty]
@@ -49,6 +51,11 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.Categories
 
             if (Category != null)
             {
+                var filePath = new Uri(Path.Join(_hostingEnvironment.WebRootPath, Category.PathOfImage)).LocalPath;
+                if (System.IO.File.Exists(filePath))
+                {
+                    System.IO.File.Delete(filePath);
+                }
                 _context.Categories.Remove(Category);
                 await _context.SaveChangesAsync();
             }
