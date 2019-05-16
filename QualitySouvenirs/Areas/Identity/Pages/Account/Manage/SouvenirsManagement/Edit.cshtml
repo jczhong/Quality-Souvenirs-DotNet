@@ -1,0 +1,63 @@
+﻿@page
+@model QualitySouvenirs.Areas.Identity.Pages.Account.Manage.SouvenirsManagement.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+    var CategoryID = (System.Collections.Generic.IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>)ViewData["CategoryID"];
+}
+
+<h2>Edit</h2>
+
+<h4>Souvenir</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Input.ID" />
+            <div class="form-group">
+                <label asp-for="Input.Name" class="control-label"></label>
+                <input asp-for="Input.Name" class="form-control" />
+                <span asp-validation-for="Input.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Description" class="control-label"></label>
+                <input asp-for="Input.Description" class="form-control" />
+                <span asp-validation-for="Input.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Price" class="control-label"></label>
+                <input asp-for="Input.Price" class="form-control" />
+                <span asp-validation-for="Input.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Popularity" class="control-label"></label>
+                <input asp-for="Input.Popularity" class="form-control" />
+                <span asp-validation-for="Input.Popularity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.CategoryID" class="control-label"></label>
+                <select asp-for="Input.CategoryID" class="form-control" asp-items=@CategoryID>
+                    <option value="">-- Select Department --</option>
+                </select>
+                <span asp-validation-for="Input.CategoryID" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.UploadFile" class="control-label"></label>
+                <input asp-for="Input.UploadFile" class="form-control" type="file" />
+                <span asp-validation-for="Input.UploadFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -8,5 +8,6 @@ namespace QualitySouvenirs.Share
     public class MyPath
     {
         public static readonly string CategoryImage = "/images/Categories/";
+        public static readonly string SouvenirsImage = "/images/Products/";
     }
 }

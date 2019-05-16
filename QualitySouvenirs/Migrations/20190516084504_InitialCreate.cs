@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace QualitySouvenirs.Migrations
 {
-    public partial class InitialSchema : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -69,10 +69,10 @@ namespace QualitySouvenirs.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    WorkPhoneNumber = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    Address = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: false),
+                    WorkPhoneNumber = table.Column<string>(nullable: false),
+                    Email = table.Column<string>(nullable: false),
+                    Address = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
