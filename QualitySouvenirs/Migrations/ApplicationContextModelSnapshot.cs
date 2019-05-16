@@ -284,7 +284,7 @@ namespace QualitySouvenirs.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoryID");
+                    b.Property<int>("CategoryID");
 
                     b.Property<string>("Description");
 
@@ -296,9 +296,13 @@ namespace QualitySouvenirs.Migrations
 
                     b.Property<double>("Price");
 
+                    b.Property<int>("SupplierID");
+
                     b.HasKey("ID");
 
                     b.HasIndex("CategoryID");
+
+                    b.HasIndex("SupplierID");
 
                     b.ToTable("Souvenir");
                 });
@@ -312,8 +316,6 @@ namespace QualitySouvenirs.Migrations
                     b.Property<string>("Address");
 
                     b.Property<string>("Email");
-
-                    b.Property<string>("MobilePhoneNumber");
 
                     b.Property<string>("Name");
 
@@ -400,7 +402,12 @@ namespace QualitySouvenirs.Migrations
                     b.HasOne("QualitySouvenirs.Models.Category", "Category")
                         .WithMany("Souvenirs")
                         .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("QualitySouvenirs.Models.Supplier", "Supplier")
+                        .WithMany("Souvenirs")
+                        .HasForeignKey("SupplierID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

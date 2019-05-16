@@ -71,7 +71,6 @@ namespace QualitySouvenirs.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     WorkPhoneNumber = table.Column<string>(nullable: true),
-                    MobilePhoneNumber = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     Address = table.Column<string>(nullable: true)
                 },
@@ -225,7 +224,8 @@ namespace QualitySouvenirs.Migrations
                     Price = table.Column<double>(nullable: false),
                     Popularity = table.Column<int>(nullable: false),
                     PathOfImage = table.Column<string>(nullable: true),
-                    CategoryID = table.Column<int>(nullable: true)
+                    CategoryID = table.Column<int>(nullable: false),
+                    SupplierID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -235,7 +235,13 @@ namespace QualitySouvenirs.Migrations
                         column: x => x.CategoryID,
                         principalTable: "Category",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.SetNull);
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Souvenir_Supplier_SupplierID",
+                        column: x => x.SupplierID,
+                        principalTable: "Supplier",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -350,6 +356,11 @@ namespace QualitySouvenirs.Migrations
                 name: "IX_Souvenir_CategoryID",
                 table: "Souvenir",
                 column: "CategoryID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Souvenir_SupplierID",
+                table: "Souvenir",
+                column: "SupplierID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -376,9 +387,6 @@ namespace QualitySouvenirs.Migrations
                 name: "OrderDetail");
 
             migrationBuilder.DropTable(
-                name: "Supplier");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
@@ -392,6 +400,9 @@ namespace QualitySouvenirs.Migrations
 
             migrationBuilder.DropTable(
                 name: "Category");
+
+            migrationBuilder.DropTable(
+                name: "Supplier");
         }
     }
 }

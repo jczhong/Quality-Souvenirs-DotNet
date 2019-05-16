@@ -1,0 +1,54 @@
+﻿@page
+@model QualitySouvenirs.Areas.Identity.Pages.Account.Manage.Suppliers.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
+}
+
+<h2>Suppliers</h2>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Supplier[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Supplier[0].WorkPhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Supplier[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Supplier[0].Address)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Supplier) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkPhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

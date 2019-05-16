@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,6 +14,9 @@ namespace QualitySouvenirs.Models
         public double Price { get; set; }
         public int Popularity { get; set; }
         public string PathOfImage { get; set; }
+        public int CategoryID { get; set; }
         public Category Category { get; set; }
+        public int SupplierID { get; set; }
+        public Supplier Supplier { get; set; }
     }
 }
