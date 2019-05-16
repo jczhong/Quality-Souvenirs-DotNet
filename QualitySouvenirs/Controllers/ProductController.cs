@@ -22,7 +22,7 @@ namespace QualitySouvenirs.Controllers
             categories = _context.Categories.ToList();
         }
 
-        public async Task<IActionResult> Index(int? id, bool? byId, string sort, string search,int? page)
+        public async Task<IActionResult> Index(int? id, bool? byId, string sort, string search,int? page,int? minprice,int? maxprice)
         {
             int currentID;
             string currentSort;
@@ -56,8 +56,21 @@ namespace QualitySouvenirs.Controllers
                 currentSort = sort;
             }
 
+
             var souvenirs = from s in _context.Souvenirs
                             select s;
+
+            if (minprice != null)
+            {
+                ViewData["MinPrice"] = minprice;
+                souvenirs = souvenirs.Where<Souvenir>(s => s.Price >= minprice);
+            }
+
+            if (maxprice != null)
+            {
+                ViewData["MaxPrice"] = maxprice;
+                souvenirs = souvenirs.Where<Souvenir>(s => s.Price <= maxprice);
+            }
 
             if (currentID != -1)
             {
