@@ -1,17 +1,12 @@
 ﻿@{
     ViewData["Title"] = "Contact Us";
 }
-<h2>@ViewData["Title"]</h2>
 
+<div class="ContactRow">
+    <div class="ContactMapWrapper">
+        <div class="ContactMap" id="map"></div>
+    </div>
 
-<style>
-    #map {
-        height: 400px;
-        width: auto;
-    }
-</style>
-<div class="row">
-    <div id="map"></div>
     <script>
         var map;
         function initMap() {
@@ -21,25 +16,28 @@
             });
             // Add marker
             var marker = new google.maps.Marker({
-                position: { lat: -36.87967209686738, lng: 174.7068214416504  },
+                position: { lat: -36.87967209686738, lng: 174.7068214416504 },
                 map: map
             });
         }
-
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFyDYFSffqTsmYyt1Gor99wcjdSCHMQgI&callback=initMap">
     </script>
+    <div class="ContactInfo">
+        <address>
+            <strong>Address:</strong>
+            139 Carrington Rd<br />
+            Mount Albert, Auckland 1025<br />
+        </address>
+
+        <address>
+            <strong>Phone:</strong>
+            09-815 4321
+        </address>
+
+        <address>
+            <strong>Email:</strong> <a href="mailto:Support@example.com">support@qulitisouvenirs.com</a><br />
+        </address>
+    </div>
 </div>
-
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
-
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>

@@ -158,3 +158,29 @@
 .ProductDetailDescription {
     padding-top: 2em;
 }
+
+.ContactRow {
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 3em 1em;
+    height: 400px;
+}
+
+.ContactRow > .ContactMapWrapper {
+    flex: 2;
+    background: orange;
+    position: relative;
+}
+
+.ContactMap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.ContactRow > .ContactInfo {
+    flex: 1;
+    margin: 2em;
+}
