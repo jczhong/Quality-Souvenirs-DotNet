@@ -82,15 +82,15 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.Categories
             if (System.IO.File.Exists(filePath))
             {
                 System.IO.File.Delete(filePath);
+            }
 
-                filePath = MyPath.CategoryImage + Guid.NewGuid().ToString() + Input.UploadFile.FileName;
-                category.PathOfImage = filePath;
+            filePath = MyPath.CategoryImage + Guid.NewGuid().ToString() + Input.UploadFile.FileName;
+            category.PathOfImage = filePath;
 
-                filePath = new Uri(Path.Join(_hostingEnvironment.WebRootPath, filePath)).LocalPath;
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    await Input.UploadFile.CopyToAsync(fileStream);
-                }
+            filePath = new Uri(Path.Join(_hostingEnvironment.WebRootPath, filePath)).LocalPath;
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                await Input.UploadFile.CopyToAsync(fileStream);
             }
 
             _context.Attach(category).State = EntityState.Modified;
