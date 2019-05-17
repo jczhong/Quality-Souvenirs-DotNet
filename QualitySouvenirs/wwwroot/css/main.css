@@ -125,3 +125,36 @@
     justify-content: center;
     margin: 1em;
 }
+
+.ProductDetailRow {
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 3em 1em;
+}
+
+.ProductDetailRow > .ProductDetailImage {
+    margin: 1em;
+}
+
+.ProductDetailRow > .ProductDetailInfo {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 1em 1em 1em 3em;
+}
+
+.ProductDetailTitle {
+    padding-bottom: 5px;
+}
+
+.ProductDetailPrice {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.ProductDetailDescription {
+    padding-top: 2em;
+}
