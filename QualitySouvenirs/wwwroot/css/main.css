@@ -184,3 +184,28 @@
     flex: 1;
     margin: 2em;
 }
+
+.AboutRow {
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 3em 1em;
+}
+
+.AboutIntroduction {
+    flex: 1;
+    margin: 1em;
+}
+
+.AboutImageWrapper {
+    flex: 1;
+
+    height: 250px;
+    overflow: hidden;
+    margin: 1em;
+}
+
+.AboutImage {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}
