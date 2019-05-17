@@ -118,3 +118,10 @@
 .PageIndexRow > .PageIndexItem {
     margin: 5px;
 }
+
+.FooterRow {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin: 1em;
+}
