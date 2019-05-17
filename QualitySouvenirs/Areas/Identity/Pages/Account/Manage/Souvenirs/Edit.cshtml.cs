@@ -15,14 +15,15 @@ using QualitySouvenirs.Models;
 using QualitySouvenirs.Share;
 using QualitySouvenirs.Utilities;
 
-namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.SouvenirsManagement
+namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.Souvenirs
 {
     public class EditModel : PageModel
     {
-        private readonly QualitySouvenirs.Data.ApplicationContext _context;
+        private readonly ApplicationContext _context;
         private readonly IHostingEnvironment _hostingEnvironment;
 
-        public EditModel(QualitySouvenirs.Data.ApplicationContext context, IHostingEnvironment environment)
+
+        public EditModel(ApplicationContext context, IHostingEnvironment environment)
         {
             _context = context;
             _hostingEnvironment = environment;
@@ -31,11 +32,24 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.SouvenirsManageme
         public class InputModel
         {
             public int ID { get; set; }
+
+            [Required]
             public string Name { get; set; }
+
+            [Required]
             public string Description { get; set; }
+
+            [Required]
             public double Price { get; set; }
+
+            [Required]
             public int Popularity { get; set; }
+
+            [Required]
             public int CategoryID { get; set; }
+
+            [Required]
+            public int SupplierID { get; set; }
 
             [Display(Name = "Image File")]
             public IFormFile UploadFile { get; set; }
@@ -51,7 +65,9 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.SouvenirsManageme
                 return NotFound();
             }
 
-            var souvenir = await _context.Souvenirs.Include(souvenirs => souvenirs.Category).FirstOrDefaultAsync(m => m.ID == id);
+            var souvenir = await _context.Souvenirs
+                .Include(s => s.Category)
+                .Include(s => s.Supplier).FirstOrDefaultAsync(m => m.ID == id);
 
             if (souvenir == null)
             {
@@ -66,20 +82,13 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.SouvenirsManageme
                 Price = souvenir.Price,
                 Popularity = souvenir.Popularity,
                 CategoryID = souvenir.CategoryID,
+                SupplierID = souvenir.SupplierID
             };
 
-
-            PopulateCategoriesDropDownList();
+            ViewData["CategoryID"] = new SelectList(_context.Categories, "ID", "Name");
+            ViewData["SupplierID"] = new SelectList(_context.Suppliers, "ID", "Name");
 
             return Page();
-        }
-
-        private void PopulateCategoriesDropDownList(object selectedCategory = null)
-        {
-            var categoriesQuery = from d in _context.Categories
-                                  orderby d.Name
-                                  select d;
-            ViewData["CategoryID"] = new SelectList(categoriesQuery.AsNoTracking(), "ID", "Name", selectedCategory);
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -103,8 +112,9 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.SouvenirsManageme
             souvenir.Price = Input.Price;
             souvenir.Popularity = Input.Popularity;
             souvenir.CategoryID = Input.CategoryID;
+            souvenir.SupplierID = Input.SupplierID;
 
-            if(null != Input.UploadFile)
+            if (null != Input.UploadFile)
             {
                 if (FileHelpers.ProcessImageFormFile(Input.UploadFile, ModelState) == false)
                 {
@@ -115,18 +125,17 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.SouvenirsManageme
                 if (System.IO.File.Exists(filePath))
                 {
                     System.IO.File.Delete(filePath);
+                }
 
-                    filePath = MyPath.SouvenirsImage + Guid.NewGuid().ToString() + Input.UploadFile.FileName;
-                    souvenir.PathOfImage = filePath;
+                filePath = MyPath.SouvenirsImage + Guid.NewGuid().ToString() + Input.UploadFile.FileName;
+                souvenir.PathOfImage = filePath;
 
-                    filePath = new Uri(Path.Join(_hostingEnvironment.WebRootPath, filePath)).LocalPath;
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await Input.UploadFile.CopyToAsync(fileStream);
-                    }
+                filePath = new Uri(Path.Join(_hostingEnvironment.WebRootPath, filePath)).LocalPath;
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await Input.UploadFile.CopyToAsync(fileStream);
                 }
             }
-
 
             _context.Attach(souvenir).State = EntityState.Modified;
 
@@ -136,7 +145,7 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.SouvenirsManageme
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SouvenirExists(Input.ID))
+                if (!SouvenirExists(souvenir.ID))
                 {
                     return NotFound();
                 }

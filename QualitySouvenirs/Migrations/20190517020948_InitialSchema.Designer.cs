@@ -10,8 +10,8 @@ using QualitySouvenirs.Data;
 namespace QualitySouvenirs.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20190516084504_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20190517020948_InitialSchema")]
+    partial class InitialSchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

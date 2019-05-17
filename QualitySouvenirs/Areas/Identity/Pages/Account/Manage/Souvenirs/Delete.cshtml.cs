@@ -1,26 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using QualitySouvenirs.Data;
 using QualitySouvenirs.Models;
 
-namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.SouvenirsManagement
+namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.Souvenirs
 {
     public class DeleteModel : PageModel
     {
         private readonly QualitySouvenirs.Data.ApplicationContext _context;
-        private readonly IHostingEnvironment _hostingEnvironment;
 
-        public DeleteModel(QualitySouvenirs.Data.ApplicationContext context, IHostingEnvironment environment)
+        public DeleteModel(QualitySouvenirs.Data.ApplicationContext context)
         {
             _context = context;
-            _hostingEnvironment = environment;
         }
 
         [BindProperty]
@@ -33,7 +29,9 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.SouvenirsManageme
                 return NotFound();
             }
 
-            Souvenir = await _context.Souvenirs.Include(souvenirs => souvenirs.Category).FirstOrDefaultAsync(m => m.ID == id);
+            Souvenir = await _context.Souvenirs
+                .Include(s => s.Category)
+                .Include(s => s.Supplier).FirstOrDefaultAsync(m => m.ID == id);
 
             if (Souvenir == null)
             {
@@ -53,12 +51,6 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.SouvenirsManageme
 
             if (Souvenir != null)
             {
-                var filePath = new Uri(Path.Join(_hostingEnvironment.WebRootPath, Souvenir.PathOfImage)).LocalPath;
-                if (System.IO.File.Exists(filePath))
-                {
-                    System.IO.File.Delete(filePath);
-                }
-
                 _context.Souvenirs.Remove(Souvenir);
                 await _context.SaveChangesAsync();
             }

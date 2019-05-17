@@ -10,14 +10,9 @@
     @if (await UserManager.IsInRoleAsync(_user, Roles.Admin))
     {
         <li class=""><a asp-page="./Index">Customers</a></li>
-        <li class="@ManageNavPages.CategoriesNavClass(ViewContext)"><a asp-area="Identity" asp-page="/Account/Manage/Categories/Index">Categories</a></li>
-
-        <li class="@ManageNavPages.SouvenirsManagementClass(ViewContext)"><a asp-area="Identity" asp-page="/Account/Manage/SouvenirsManagement/Index">SouvenirsManagement</a></li>
-        <li class=""><a asp-page="./Index">Suppliers</a></li>
-
-        <li class=""><a asp-page="./Index">Souvenirs</a></li>
+        <li class="@ManageNavPages.SouvenirsClass(ViewContext)"><a asp-area="Identity" asp-page="/Account/Manage/Souvenirs/Index">Souvenirs</a></li>
         <li class="@ManageNavPages.SuppliersNavClass(ViewContext)"><a asp-area="Identity" asp-page="/Account/Manage/Suppliers/Index">Suppliers</a></li>
-
+        <li class="@ManageNavPages.CategoriesNavClass(ViewContext)"><a asp-area="Identity" asp-page="/Account/Manage/Categories/Index">Categories</a></li>
     }
     <li class="@ManageNavPages.IndexNavClass(ViewContext)"><a asp-page="/Account/Manage/Index">Profile</a></li>
     <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext)"><a id="change-password" asp-area="Identity" asp-page="/Account/Manage/ChangePassword">Password</a></li>

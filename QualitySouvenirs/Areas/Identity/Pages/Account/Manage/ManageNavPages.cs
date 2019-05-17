@@ -16,11 +16,9 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage
 
         public static string Categories => "Categories";
 
-
-        public static string SouvenirsManagement => "SouvenirsManagement";
+        public static string Souvenirs => "Souvenirs";
 
         public static string Suppliers => "Suppliers";
-
 
         public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
 
@@ -30,11 +28,9 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage
 
         public static string CategoriesNavClass(ViewContext viewContext) => PageNavClass(viewContext, Categories);
 
-
-        public static string SouvenirsManagementClass(ViewContext viewContext) => PageNavClass(viewContext, SouvenirsManagement);
+        public static string SouvenirsClass(ViewContext viewContext) => PageNavClass(viewContext, Souvenirs);
 
         public static string SuppliersNavClass(ViewContext viewContext) => PageNavClass(viewContext, Suppliers);
-
     
         public static string PageNavClass(ViewContext viewContext, string page)
         {
@@ -48,9 +44,9 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage
             {
                 activePage = Categories;
             }
-            else if (viewContext.ActionDescriptor.DisplayName.StartsWith("/Account/Manage/SouvenirsManagement"))
+            else if (viewContext.ActionDescriptor.DisplayName.StartsWith("/Account/Manage/Souvenirs"))
             {
-                activePage = SouvenirsManagement;
+                activePage = Souvenirs;
             }
             else if (viewContext.ActionDescriptor.DisplayName.StartsWith("/Account/Manage/Suppliers"))
             {

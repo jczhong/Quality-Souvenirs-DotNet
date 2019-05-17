@@ -1,11 +1,12 @@
 ﻿@page
-@model QualitySouvenirs.Areas.Identity.Pages.Account.Manage.SouvenirsManagement.IndexModel
+@model QualitySouvenirs.Areas.Identity.Pages.Account.Manage.Souvenirs.IndexModel
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Souvenirs</h2>
 
 <p>
     <a asp-page="Create">Create New</a>
@@ -17,19 +18,16 @@
                 @Html.DisplayNameFor(model => model.Souvenir[0].Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Souvenir[0].Description)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Souvenir[0].Price)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Souvenir[0].Popularity)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Souvenir[0].PathOfImage)
+                @Html.DisplayNameFor(model => model.Souvenir[0].Category)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Souvenir[0].Category)
+                @Html.DisplayNameFor(model => model.Souvenir[0].Supplier)
             </th>
             <th></th>
         </tr>
@@ -41,19 +39,16 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Popularity)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PathOfImage)
+                @Html.DisplayFor(modelItem => item.Category.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Category.Name)
+                @Html.DisplayFor(modelItem => item.Supplier.Name)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |

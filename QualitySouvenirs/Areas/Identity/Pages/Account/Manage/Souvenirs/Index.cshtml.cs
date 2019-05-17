@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using QualitySouvenirs.Data;
 using QualitySouvenirs.Models;
 
-namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.SouvenirsManagement
+namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.Souvenirs
 {
     public class IndexModel : PageModel
     {
@@ -23,7 +23,9 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.SouvenirsManageme
 
         public async Task OnGetAsync()
         {
-            Souvenir = await _context.Souvenirs.Include(souvenirs => souvenirs.Category).ToListAsync();
+            Souvenir = await _context.Souvenirs
+                .Include(s => s.Category)
+                .Include(s => s.Supplier).ToListAsync();
         }
     }
 }
