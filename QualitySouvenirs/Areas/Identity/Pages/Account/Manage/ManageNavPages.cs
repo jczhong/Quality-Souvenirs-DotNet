@@ -20,6 +20,8 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage
 
         public static string Suppliers => "Suppliers";
 
+        public static string Customers => "Customers";
+
         public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
 
         public static string ChangePasswordNavClass(ViewContext viewContext) => PageNavClass(viewContext, ChangePassword);
@@ -31,6 +33,8 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage
         public static string SouvenirsClass(ViewContext viewContext) => PageNavClass(viewContext, Souvenirs);
 
         public static string SuppliersNavClass(ViewContext viewContext) => PageNavClass(viewContext, Suppliers);
+
+        public static string CustomersNavClass(ViewContext viewContext) => PageNavClass(viewContext, Customers);
     
         public static string PageNavClass(ViewContext viewContext, string page)
         {
@@ -51,6 +55,10 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage
             else if (viewContext.ActionDescriptor.DisplayName.StartsWith("/Account/Manage/Suppliers"))
             {
                 activePage = Suppliers;
+            }
+            else if (viewContext.ActionDescriptor.DisplayName.StartsWith("/Account/Manage/Customers"))
+            {
+                activePage = Customers;
             }
             return string.Equals(activePage, page, StringComparison.OrdinalIgnoreCase) ? "active" : null;
         }

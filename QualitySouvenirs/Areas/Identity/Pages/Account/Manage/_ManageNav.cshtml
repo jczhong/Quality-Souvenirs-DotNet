@@ -9,7 +9,7 @@
     <li class="@ManageNavPages.OrdersNavClass(ViewContext)"><a asp-area="Identity" asp-page="/Account/Manage/Orders/Index">Orders</a></li>
     @if (await UserManager.IsInRoleAsync(_user, Roles.Admin))
     {
-        <li class=""><a asp-page="./Index">Customers</a></li>
+        <li class="@ManageNavPages.CustomersNavClass(ViewContext)"><a asp-area="Identity" asp-page="/Account/Manage/Customers/Index">Customers</a></li>
         <li class="@ManageNavPages.SouvenirsClass(ViewContext)"><a asp-area="Identity" asp-page="/Account/Manage/Souvenirs/Index">Souvenirs</a></li>
         <li class="@ManageNavPages.SuppliersNavClass(ViewContext)"><a asp-area="Identity" asp-page="/Account/Manage/Suppliers/Index">Suppliers</a></li>
         <li class="@ManageNavPages.CategoriesNavClass(ViewContext)"><a asp-area="Identity" asp-page="/Account/Manage/Categories/Index">Categories</a></li>

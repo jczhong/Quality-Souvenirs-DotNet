@@ -33,6 +33,8 @@
     <Compile Remove="Migrations\20190516050101_InitialSchema.Designer.cs" />
     <Compile Remove="Migrations\20190516084504_InitialCreate.cs" />
     <Compile Remove="Migrations\20190516084504_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20190517020948_InitialSchema.cs" />
+    <Compile Remove="Migrations\20190517020948_InitialSchema.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,6 +44,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Identity\Pages\Account\Manage\Customers\" />
     <Folder Include="Areas\Identity\Services\" />
     <Folder Include="Data\" />
     <Folder Include="wwwroot\images\Categories\" />
