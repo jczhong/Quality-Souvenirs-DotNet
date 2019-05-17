@@ -76,6 +76,7 @@ namespace QualitySouvenirs.Controllers
                 order.OrderStatus = OrderStatus.Waiting;
                 order.Date = DateTime.Today;
                 order.OrderDetails = orderDetails;
+                cart.ClearCart(_context);
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
