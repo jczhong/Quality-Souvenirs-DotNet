@@ -113,7 +113,7 @@ namespace QualitySouvenirs.Controllers
                     break;
             }
 
-            int pageSize = 4;
+            int pageSize = 10;
 
             return View(await PaginatedList<Souvenir>.CreateAsync(souvenirs.AsNoTracking(), page ?? 1, pageSize));
         }

@@ -50,7 +50,7 @@
 
     <div class="ProductOpsSubRow">
         <div class="ProductOpsCol">
-            Showing 1 - 3 of 3 products
+            Showing @((Model.PageIndex - 1) * Model.PageSize + 1) - @(Model.PageIndex * Model.PageSize) of @Model.TotalProduct products
         </div>
         @await Html.PartialAsync("_SortSelector", ViewData["SortViewModel"], new ViewDataDictionary(ViewData))
     </div>
