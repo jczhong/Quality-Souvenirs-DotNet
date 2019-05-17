@@ -5,7 +5,7 @@
 $(document).ready(function () {
     $("#SortSelector").on("change", function () {
         var url = location.href;
-        var value = url.match(/sort=(.*)/);
+        var value = url.match(/sort=(.\w*)/);
         if (value != null) {
             url = url.replace(value[1], this.value);
         } else {
@@ -22,6 +22,27 @@ $(document).ready(function () {
                     url = url + "&search=" + search;
                 } else {
                     url = url + "?search=" + search;
+                }
+            }
+        }
+
+        if ($("#MinPrice").val().length != 0) {
+            if (url.match(/minprice=/) == null) {
+                var minprice = $("#MinPrice").val();
+                if (location.search != "") {
+                    url = url + "&minprice=" + minprice;
+                } else {
+                    url = url + "?minprice=" + minprice;
+                }
+            }
+        }
+        if ($("#MaxPrice").val().length != 0) {
+            if (url.match(/maxprice=/) == null) {
+                var maxprice = $("#MaxPrice").val();
+                if (location.search != "") {
+                    url = url + "&maxprice=" + maxprice;
+                } else {
+                    url = url + "?maxprice=" + maxprice;
                 }
             }
         }

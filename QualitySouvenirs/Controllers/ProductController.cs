@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -7,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QualitySouvenirs.Data;
 using QualitySouvenirs.Models;
+using QualitySouvenirs.Utilities;
 
 namespace QualitySouvenirs.Controllers
 {
@@ -22,7 +22,7 @@ namespace QualitySouvenirs.Controllers
             categories = _context.Categories.ToList();
         }
 
-        public async Task<IActionResult> Index(int? id, bool? byId, string sort, string search,int? page,int? minprice,int? maxprice)
+        public async Task<IActionResult> Index(int? id, bool? byId, string sort, string search, int? page, int? minprice, int? maxprice)
         {
             int currentID;
             string currentSort;
@@ -112,8 +112,9 @@ namespace QualitySouvenirs.Controllers
                     souvenirs = souvenirs.OrderBy(s => s.Price);
                     break;
             }
+
             int pageSize = 4;
-            //return View(souvenirs);
+
             return View(await PaginatedList<Souvenir>.CreateAsync(souvenirs.AsNoTracking(), page ?? 1, pageSize));
         }
 
