@@ -108,6 +108,12 @@
     padding-right: 0.5em;
 }
 
+.fa-kiwi-bird {
+    font-size: 28px;
+    color: white;
+    padding-bottom: 5px;
+}
+
 .PageIndexRow {
     display: flex;
     flex-wrap: nowrap;
@@ -198,7 +204,6 @@
 
 .AboutImageWrapper {
     flex: 1;
-
     height: 250px;
     overflow: hidden;
     margin: 1em;
