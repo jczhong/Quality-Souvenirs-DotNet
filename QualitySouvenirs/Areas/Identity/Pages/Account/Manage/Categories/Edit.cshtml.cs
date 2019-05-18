@@ -32,7 +32,6 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.Categories
             [Required]
             public string Name { get; set; }
 
-            [Required]
             [Display(Name = "Image File")]
             public IFormFile UploadFile { get; set; }
         }
@@ -63,34 +62,37 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.Categories
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid && id == null)
+            if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            if (FileHelpers.ProcessImageFormFile(Input.UploadFile, ModelState) == false)
-            {
-                return Page();
-            }
-
-            var category = await _context.Categories.FirstOrDefaultAsync(m => m.ID == id);
+            var category = await _context.Categories.FirstOrDefaultAsync(m => m.ID == Input.ID);
             category.Name = Input.Name;
 
-            var filePath = new Uri(Path.Join(_hostingEnvironment.WebRootPath, category.PathOfImage)).LocalPath;
-            if (System.IO.File.Exists(filePath))
+            if (Input.UploadFile != null)
             {
-                System.IO.File.Delete(filePath);
-            }
+                if (FileHelpers.ProcessImageFormFile(Input.UploadFile, ModelState) == false)
+                {
+                    return Page();
+                }
 
-            filePath = MyPath.CategoryImage + Guid.NewGuid().ToString() + Input.UploadFile.FileName;
-            category.PathOfImage = filePath;
+                var filePath = new Uri(Path.Join(_hostingEnvironment.WebRootPath, category.PathOfImage)).LocalPath;
+                if (System.IO.File.Exists(filePath))
+                {
+                    System.IO.File.Delete(filePath);
+                }
 
-            filePath = new Uri(Path.Join(_hostingEnvironment.WebRootPath, filePath)).LocalPath;
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
-            {
-                await Input.UploadFile.CopyToAsync(fileStream);
+                filePath = MyPath.CategoryImage + Guid.NewGuid().ToString() + Input.UploadFile.FileName;
+                category.PathOfImage = filePath;
+
+                filePath = new Uri(Path.Join(_hostingEnvironment.WebRootPath, filePath)).LocalPath;
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await Input.UploadFile.CopyToAsync(fileStream);
+                }
             }
 
             _context.Attach(category).State = EntityState.Modified;
