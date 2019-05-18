@@ -9,6 +9,7 @@ namespace QualitySouvenirs.Models
 {
     public class AppUser : IdentityUser
     {
+        [Required]
         public string FullName { get; set; }
         public string Address { get; set; }
 

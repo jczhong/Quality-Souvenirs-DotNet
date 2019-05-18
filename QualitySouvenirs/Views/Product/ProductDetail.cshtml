@@ -12,7 +12,7 @@
     <div class="ProductDetailInfo">
         <div>
         <h3 class="ProductDetailTitle">@Html.DisplayFor(model => model.Name)</h3>
-        <h4 class="ProductDetailPrice">$@Html.DisplayFor(model => model.Price)</h4>
+        <h4 class="ProductDetailPrice">@Html.DisplayFor(model => model.Price)</h4>
         <p class="ProductDetailDescription">@Html.DisplayFor(model => model.Description)</p>
             </div>
         <div text-center"><button id="AddToCart-@Model.ID" value="1" type="button" class="btn btn-default">Add to Cart</button></div>

@@ -9,6 +9,31 @@ namespace QualitySouvenirs.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "AppUser",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    UserName = table.Column<string>(nullable: true),
+                    NormalizedUserName = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    NormalizedEmail = table.Column<string>(nullable: true),
+                    EmailConfirmed = table.Column<bool>(nullable: false),
+                    PasswordHash = table.Column<string>(nullable: true),
+                    SecurityStamp = table.Column<string>(nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
+                    LockoutEnabled = table.Column<bool>(nullable: false),
+                    AccessFailedCount = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppUser", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
@@ -41,7 +66,7 @@ namespace QualitySouvenirs.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    FullName = table.Column<string>(nullable: true),
+                    FullName = table.Column<string>(nullable: false),
                     Address = table.Column<string>(nullable: true),
                     Enabled = table.Column<bool>(nullable: false)
                 },
@@ -56,8 +81,8 @@ namespace QualitySouvenirs.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    PathOfImage = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: false),
+                    PathOfImage = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -199,7 +224,7 @@ namespace QualitySouvenirs.Migrations
                     SubTotal = table.Column<double>(nullable: false),
                     GST = table.Column<double>(nullable: false),
                     GrandTotal = table.Column<double>(nullable: false),
-                    OrderStatus = table.Column<string>(nullable: true),
+                    OrderStatus = table.Column<string>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
                     AppUserId = table.Column<string>(nullable: true)
                 },
@@ -220,7 +245,7 @@ namespace QualitySouvenirs.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     Price = table.Column<double>(nullable: false),
                     Popularity = table.Column<int>(nullable: false),
@@ -251,7 +276,7 @@ namespace QualitySouvenirs.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CartID = table.Column<string>(nullable: true),
+                    CartID = table.Column<string>(nullable: false),
                     Count = table.Column<int>(nullable: false),
                     SouvenirID = table.Column<int>(nullable: true),
                     DateCreated = table.Column<DateTime>(nullable: false)
@@ -366,6 +391,9 @@ namespace QualitySouvenirs.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "AppUser");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 

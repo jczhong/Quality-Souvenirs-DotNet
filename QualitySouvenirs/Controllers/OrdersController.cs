@@ -44,7 +44,7 @@ namespace QualitySouvenirs.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FirstName,LastName,Address,PhoneNumber")] Order order)
+        public async Task<IActionResult> Create([Bind("FirstName,LastName,Address,PhoneNumber,OrderStatus")] Order order)
         {
             AppUser user = await _userManager.GetUserAsync(User);
             double subTotal = 0.0;

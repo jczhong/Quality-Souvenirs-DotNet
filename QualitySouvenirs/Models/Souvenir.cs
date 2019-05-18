@@ -9,8 +9,12 @@ namespace QualitySouvenirs.Models
     public class Souvenir
     {
         public int ID { get; set; }
+
+        [Required]
         public string Name { get; set; }
         public string Description { get; set; }
+
+        [DataType(DataType.Currency)]
         public double Price { get; set; }
         public int Popularity { get; set; }
         public string PathOfImage { get; set; }

@@ -97,7 +97,7 @@
                 </a>
             </div>
             <div class="ProductName text-center">@Html.DisplayFor(modelItem => item.Name)</div>
-            <div class="ProductPrice text-center">$@Html.DisplayFor(modelItem => item.Price)</div>
+            <div class="ProductPrice text-center">@Html.DisplayFor(modelItem => item.Price)</div>
             <div class="ProductOrder text-center"><button type="button" class="btn btn-default" id="AddToCart-@item.ID" value="1">Add to Cart</button></div>
         </div>
     }

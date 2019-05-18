@@ -44,7 +44,7 @@
                 @Html.DisplayFor(modelItem => item.Count)
             </td>
             <td>
-                $@Html.DisplayFor(modelItem => item.Souvenir.Price)
+                @Html.DisplayFor(modelItem => item.Souvenir.Price)
             </td>
             <td>
                 <a class="btn btn-default" asp-controller="ShoppingCart" asp-action="AddGET" asp-route-id="@item.Souvenir.ID" asp-route-count="1">+</a>

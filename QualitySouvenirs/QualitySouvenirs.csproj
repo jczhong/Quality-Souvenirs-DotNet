@@ -35,6 +35,10 @@
     <Compile Remove="Migrations\20190516084504_InitialCreate.Designer.cs" />
     <Compile Remove="Migrations\20190517020948_InitialSchema.cs" />
     <Compile Remove="Migrations\20190517020948_InitialSchema.Designer.cs" />
+    <Compile Remove="Migrations\20190517042722_InitialSchema.cs" />
+    <Compile Remove="Migrations\20190517042722_InitialSchema.Designer.cs" />
+    <Compile Remove="Migrations\20190518030025_InitialSchema.cs" />
+    <Compile Remove="Migrations\20190518030025_InitialSchema.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

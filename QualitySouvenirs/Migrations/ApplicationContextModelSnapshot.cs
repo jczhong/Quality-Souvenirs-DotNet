@@ -63,6 +63,44 @@ namespace QualitySouvenirs.Migrations
                     b.ToTable("AspNetRoleClaims");
                 });
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AccessFailedCount");
+
+                    b.Property<string>("ConcurrencyStamp");
+
+                    b.Property<string>("Email");
+
+                    b.Property<bool>("EmailConfirmed");
+
+                    b.Property<bool>("LockoutEnabled");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd");
+
+                    b.Property<string>("NormalizedEmail");
+
+                    b.Property<string>("NormalizedUserName");
+
+                    b.Property<string>("PasswordHash");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<string>("SecurityStamp");
+
+                    b.Property<bool>("TwoFactorEnabled");
+
+                    b.Property<string>("UserName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppUser");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
@@ -148,7 +186,8 @@ namespace QualitySouvenirs.Migrations
 
                     b.Property<bool>("Enabled");
 
-                    b.Property<string>("FullName");
+                    b.Property<string>("FullName")
+                        .IsRequired();
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -192,7 +231,8 @@ namespace QualitySouvenirs.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CartID");
+                    b.Property<string>("CartID")
+                        .IsRequired();
 
                     b.Property<int>("Count");
 
@@ -213,9 +253,11 @@ namespace QualitySouvenirs.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
-                    b.Property<string>("PathOfImage");
+                    b.Property<string>("PathOfImage")
+                        .IsRequired();
 
                     b.HasKey("ID");
 
@@ -245,7 +287,8 @@ namespace QualitySouvenirs.Migrations
                     b.Property<string>("LastName")
                         .IsRequired();
 
-                    b.Property<string>("OrderStatus");
+                    b.Property<string>("OrderStatus")
+                        .IsRequired();
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired();
@@ -290,7 +333,8 @@ namespace QualitySouvenirs.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<string>("PathOfImage");
 
