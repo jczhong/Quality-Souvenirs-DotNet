@@ -329,7 +329,7 @@ namespace QualitySouvenirs.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CategoryID");
+                    b.Property<int?>("CategoryID");
 
                     b.Property<string>("Description");
 
@@ -342,7 +342,7 @@ namespace QualitySouvenirs.Migrations
 
                     b.Property<double>("Price");
 
-                    b.Property<int>("SupplierID");
+                    b.Property<int?>("SupplierID");
 
                     b.HasKey("ID");
 
@@ -432,7 +432,8 @@ namespace QualitySouvenirs.Migrations
                 {
                     b.HasOne("QualitySouvenirs.Models.AppUser", "AppUser")
                         .WithMany()
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("QualitySouvenirs.Models.OrderDetail", b =>
@@ -444,7 +445,8 @@ namespace QualitySouvenirs.Migrations
 
                     b.HasOne("QualitySouvenirs.Models.Souvenir", "Souvenir")
                         .WithMany()
-                        .HasForeignKey("SouvenirID");
+                        .HasForeignKey("SouvenirID")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("QualitySouvenirs.Models.Souvenir", b =>
@@ -452,12 +454,12 @@ namespace QualitySouvenirs.Migrations
                     b.HasOne("QualitySouvenirs.Models.Category", "Category")
                         .WithMany("Souvenirs")
                         .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("QualitySouvenirs.Models.Supplier", "Supplier")
                         .WithMany("Souvenirs")
                         .HasForeignKey("SupplierID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 #pragma warning restore 612, 618
         }

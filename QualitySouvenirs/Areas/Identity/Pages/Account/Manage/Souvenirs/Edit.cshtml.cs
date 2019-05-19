@@ -81,8 +81,8 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account.Manage.Souvenirs
                 Description = souvenir.Description,
                 Price = souvenir.Price,
                 Popularity = souvenir.Popularity,
-                CategoryID = souvenir.CategoryID,
-                SupplierID = souvenir.SupplierID
+                CategoryID = souvenir.CategoryID != null ? souvenir.CategoryID.Value : 0,
+                SupplierID = souvenir.SupplierID != null ? souvenir.SupplierID.Value : 0,
             };
 
             ViewData["CategoryID"] = new SelectList(_context.Categories, "ID", "Name");

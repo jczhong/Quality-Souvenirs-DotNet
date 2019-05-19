@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace QualitySouvenirs.Migrations
 {
-    public partial class InitialSchema : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -236,7 +236,7 @@ namespace QualitySouvenirs.Migrations
                         column: x => x.AppUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -250,8 +250,8 @@ namespace QualitySouvenirs.Migrations
                     Price = table.Column<double>(nullable: false),
                     Popularity = table.Column<int>(nullable: false),
                     PathOfImage = table.Column<string>(nullable: true),
-                    CategoryID = table.Column<int>(nullable: false),
-                    SupplierID = table.Column<int>(nullable: false)
+                    CategoryID = table.Column<int>(nullable: true),
+                    SupplierID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -261,13 +261,13 @@ namespace QualitySouvenirs.Migrations
                         column: x => x.CategoryID,
                         principalTable: "Category",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_Souvenir_Supplier_SupplierID",
                         column: x => x.SupplierID,
                         principalTable: "Supplier",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -316,7 +316,7 @@ namespace QualitySouvenirs.Migrations
                         column: x => x.SouvenirID,
                         principalTable: "Souvenir",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateIndex(

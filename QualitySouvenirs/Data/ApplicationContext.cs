@@ -31,10 +31,30 @@ namespace QualitySouvenirs.Data
             modelBuilder.Entity<OrderDetail>().ToTable("OrderDetail");
             modelBuilder.Entity<CartItem>().ToTable("CartItem");
 
+            modelBuilder.Entity<Order>()
+                .HasOne(o => o.AppUser)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Cascade);
+
             modelBuilder.Entity<OrderDetail>()
-                .HasOne(p => p.Order)
+                .HasOne(o => o.Souvenir)
+                .WithMany()
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<OrderDetail>()
+                .HasOne(o => o.Order)
                 .WithMany(o => o.OrderDetails)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Souvenir>()
+                .HasOne(s => s.Category)
+                .WithMany(c => c.Souvenirs)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<Souvenir>()
+                .HasOne(s => s.Supplier)
+                .WithMany(s => s.Souvenirs)
+                .OnDelete(DeleteBehavior.SetNull);
 
             modelBuilder.Entity<IdentityUser>(b =>
             {
