@@ -82,7 +82,7 @@ namespace QualitySouvenirs.Data
             var user = await userManager.FindByNameAsync(UserName);
             if (user == null)
             {
-                user = new AppUser { UserName = UserName, FullName = Roles.Admin, Email = UserName, Enabled = true };
+                user = new AppUser { UserName = UserName, FullName = Roles.Admin, Email = UserName, Enabled = true, EmailConfirmed = true };
                 await userManager.CreateAsync(user, Password);
             }
 
