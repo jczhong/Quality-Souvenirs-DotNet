@@ -95,7 +95,7 @@ namespace QualitySouvenirs.Areas.Identity.Pages.Account
 
                     await _userManager.AddToRoleAsync(user, Roles.Customer);
 
-                    //await _signInManager.SignInAsync(user, isPersistent: false);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);
                 }
                 foreach (var error in result.Errors)
