@@ -50,18 +50,18 @@ namespace QualitySouvenirs.Data
 
             var souvenirs = new Souvenir[]
             {
-                new Souvenir{ Name="Test Maori Gifts", Description="This is a test product", Price=12.8, Popularity=1, Category=categories[0], Supplier=suppliers[0]},
-                new Souvenir{ Name="Test Jewellery", Description="This is a test product", Price=31.8, Popularity=2, Category=categories[1], Supplier=suppliers[0]},
-                new Souvenir{ Name="Test Art", Description="This is a test product", Price=49.90, Popularity=3, Category=categories[2], Supplier=suppliers[0]},
-                new Souvenir{ Name="Test Homeware", Description="This is a test product", Price=27.5, Popularity=4, Category=categories[3], Supplier=suppliers[1]},
-                new Souvenir{ Name="Test Clothing", Description="This is a test product", Price=13.8, Popularity=5, Category=categories[4], Supplier=suppliers[1]},
-                new Souvenir{ Name="Test Bags", Description="This is a test product", Price=5.99, Popularity=6, Category=categories[5], Supplier=suppliers[1]},
-                new Souvenir{ Name="Test Maori Gifts 1", Description="This is a test product", Price=12.8, Popularity=1, Category=categories[0], Supplier=suppliers[0]},
-                new Souvenir{ Name="Test Jewellery 1", Description="This is a test product", Price=31.8, Popularity=2, Category=categories[1], Supplier=suppliers[0]},
-                new Souvenir{ Name="Test Art 1", Description="This is a test product", Price=49.90, Popularity=3, Category=categories[2], Supplier=suppliers[0]},
-                new Souvenir{ Name="Test Homeware 1", Description="This is a test product", Price=27.5, Popularity=4, Category=categories[3], Supplier=suppliers[1]},
-                new Souvenir{ Name="Test Clothing 1", Description="This is a test product", Price=13.8, Popularity=5, Category=categories[4], Supplier=suppliers[1]},
-                new Souvenir{ Name="Test Bags 1", Description="This is a test product", Price=5.99, Popularity=6, Category=categories[5], Supplier=suppliers[1]},
+                new Souvenir{ Name="Maori Gifts A", Description="This is a test product", Price=49.9, Popularity=1, Category=categories[0], Supplier=suppliers[0]},
+                new Souvenir{ Name="Jewellery A", Description="This is a test product", Price=99.9, Popularity=2, Category=categories[1], Supplier=suppliers[0]},
+                new Souvenir{ Name="Art A", Description="This is a test product", Price=149.9, Popularity=3, Category=categories[2], Supplier=suppliers[0]},
+                new Souvenir{ Name="Homeware A", Description="This is a test product", Price=7.5, Popularity=4, Category=categories[3], Supplier=suppliers[1]},
+                new Souvenir{ Name="Clothing A", Description="This is a test product", Price=25.8, Popularity=5, Category=categories[4], Supplier=suppliers[1]},
+                new Souvenir{ Name="Bags A", Description="This is a test product", Price=2.99, Popularity=6, Category=categories[5], Supplier=suppliers[1]},
+                new Souvenir{ Name="Maori Gifts B", Description="This is a test product", Price=79.8, Popularity=1, Category=categories[0], Supplier=suppliers[0]},
+                new Souvenir{ Name="Jewellery B", Description="This is a test product", Price=131.8, Popularity=2, Category=categories[1], Supplier=suppliers[0]},
+                new Souvenir{ Name="Art B", Description="This is a test product", Price=69.9, Popularity=3, Category=categories[2], Supplier=suppliers[0]},
+                new Souvenir{ Name="Homeware B", Description="This is a test product", Price=27.5, Popularity=4, Category=categories[3], Supplier=suppliers[1]},
+                new Souvenir{ Name="Clothing B", Description="This is a test product", Price=34.8, Popularity=5, Category=categories[4], Supplier=suppliers[1]},
+                new Souvenir{ Name="Bags B", Description="This is a test product", Price=3.99, Popularity=6, Category=categories[5], Supplier=suppliers[1]},
             };
             foreach (Souvenir souvenir in souvenirs)
             {
