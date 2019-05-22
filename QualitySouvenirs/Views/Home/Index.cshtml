@@ -35,10 +35,10 @@
     </div>
 </div>
 
-<div class="card-columns">
+<div class="CategoryRow">
     @foreach (var item in Categories)
     {
-    <div class="card text-center">
+    <div class="card text-center CategoryItem">
         <a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@item.ID">
             <img class="card-img-top img-responsive" src="@item.PathOfImage" alt="@item.Name" />
         </a>

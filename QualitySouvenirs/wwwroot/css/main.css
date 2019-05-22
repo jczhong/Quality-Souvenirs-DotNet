@@ -214,3 +214,13 @@
     display: block;
     margin: 0 auto;
 }
+
+.CategoryRow {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.CategoryRow > .CategoryItem {
+    flex: 1;
+    margin: 1em;
+}
