@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using QualitySouvenirs.Data;
 using QualitySouvenirs.Models;
 using QualitySouvenirs.Services;
@@ -33,7 +34,12 @@ namespace QualitySouvenirs
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseMySql(Configuration.GetConnectionString("DefaultConnection"),
+                    mySqlOptions =>
+                    {
+                        mySqlOptions.ServerVersion(new Version(8, 0, 17), ServerType.MySql);
+                    }
+            ));
             services.AddIdentity<AppUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationContext>()
                 .AddDefaultUI()
